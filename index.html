@@ -4,10 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Third Degree Burn — Ayaan Asif</title>
+
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body data-page="home">
 
+  <!-- NAVBAR -->
   <div class="navbar-wrap">
     <nav class="navbar">
       <a class="nav-left" href="index.html">
@@ -24,7 +26,6 @@
         <a class="nav-link" data-page="convert" href="convert.html">Image → STL</a>
         <a class="nav-link" data-page="games" href="games.html">Games</a>
         <a class="nav-link" data-page="connections" href="connections.html">Connections</a>
-        <!-- external nice pills -->
         <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
           Weather Viz
         </a>
@@ -39,60 +40,111 @@
   <!-- HERO BG WRAPPER -->
   <div class="home-hero-bg">
     <main class="container">
-      <section class="hero-shell">
-        <div>
+
+      <!-- HERO -->
+      <section class="hero-shell hero-layout">
+        <div class="hero-main">
           <h1 class="home-title">Hi, I'm Ayaan.</h1>
           <p class="home-sub">
-            I design & print functional 3D parts, build Unity games, and train / evaluate AI systems.
-            Everything folds under <strong>ThirdDegreeBurn</strong>.
+            I am a fourth year at the University of Toronto. I design & print 3D parts, build Unity games, and train / evaluate AI systems in my off time. I am pretty passionate about soccer and space stuff. You can go through the 3D prints in my portfolio and upload your own STL files to view or download one of mine from the 3D print upload section. I have also developed a couple games and will build my connections here. Maybe add a couple cool links here and there.
+            Welcome to <strong>ThirdDegreeBurn</strong>.
           </p>
 
           <div class="quick-links-grid">
             <a class="feature-link" href="portfolio.html">
               <span class="label">3D Library</span>
               <span class="title">Portfolio viewer</span>
-              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">View STL parts →</span>
+              <span class="sub">View STL parts →</span>
             </a>
             <a class="feature-link" href="upload.html">
               <span class="label">Custom part</span>
               <span class="title">Upload & preview STL</span>
-              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">With color picker</span>
+              <span class="sub">With color picker</span>
             </a>
             <a class="feature-link" href="convert.html">
               <span class="label">Image tool</span>
               <span class="title">Image → STL</span>
-              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">Heightmap generator</span>
+              <span class="sub">Heightmap generator</span>
             </a>
             <a class="feature-link" href="games.html">
               <span class="label">Playground</span>
               <span class="title">Nyan Knives & Dino</span>
-              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">Videos & future WebGL</span>
+              <span class="sub">Videos & future WebGL</span>
             </a>
             <a class="feature-link" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
               <span class="label">Viz</span>
               <span class="title">Weather map</span>
-              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">External →</span>
+              <span class="sub">External →</span>
             </a>
             <a class="feature-link" href="connections.html">
               <span class="label">Network</span>
               <span class="title">Connections</span>
-              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">Partner links</span>
+              <span class="sub">Partner links</span>
             </a>
           </div>
         </div>
 
-        <aside class="right-summary">
-          <h2>What I do</h2>
-          <ul>
-            <li>I enjoy building things, from software and games to 3D prints and physics simulations</li>
-            <li>Unity game developer</li>
-            <li>AI/LLM training & evaluation (Data Annotation Tech)</li>
-          </ul>
-          <div class="note">
-            True wealth cannot be measured in gold, but in experience, age, and everything that comes with it, is a blessing
+        <!-- ORBIT VISUALIZATION -->
+        <aside class="hero-visual">
+          <div class="orbit-shell">
+            <div class="orbit-center">
+              <span class="center-tag"></span>
+            </div>
+
+            <div class="orbit orbit-1">
+              <span class="orbit-dot orbit-dot-1">3D<br>Printing</span>
+            </div>
+            <div class="orbit orbit-2">
+              <span class="orbit-dot orbit-dot-2">Games<br>&amp; Engines</span>
+            </div>
+            <div class="orbit orbit-3">
+              <span class="orbit-dot orbit-dot-3">AI /<br>LLM</span>
+            </div>
+          </div>
+
+          <div class="orbit-legend">
+            <div class="orbit-pill">
+              <span class="pill-text">AI evaluation and training with Data Annotation Tech</span>
+            </div>
+            <div class="orbit-pill">
+              <span class="pill-text">Computer Science specialist, Astrophysics minor @ UofT</span>
+            </div>
+            <div class="orbit-pill">
+              <span class="pill-text">Game Development - NyanKnives, Raptor Run, QuickMath</span>
+            </div>
           </div>
         </aside>
       </section>
+
+      <!-- WHAT I DO -->
+      <section class="what-section">
+        <h2 class="what-title">What to do</h2>
+        <div class="what-grid">
+          <div class="what-card">
+            <div class="what-label">Build</div>
+            <p>
+              Design and print functional parts, repair broken pieces, and prototype fixtures using Onshape,
+              Cura, and Creality printers. <strong>the universe loves you ii - khurangbin</strong>
+            </p>
+          </div>
+          <div class="what-card">
+            <div class="what-label">Simulate</div>
+            <p>
+              Experiment with physics-based animation, supernova photometry, and simulation tooling that
+              connects code with real-world behavior. <strong>Ultra 85 - Logic</strong>
+            </p>
+          </div>
+          <div class="what-card">
+            <div class="what-label">Ship</div>
+            <p>
+              Package everything into tools: Unity games, STL viewers, dashboards, and small utilities that
+              other people can click and use.
+              <strong>Random Access Memories - Daft Punk</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
