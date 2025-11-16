@@ -1,0 +1,92 @@
+/* assets/css/connections.css */
+
+.connections-intro {
+    max-width: 800px;
+    font-size: .95rem;
+    color: var(--text-dim);
+    line-height: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.connections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 1rem;
+}
+
+.connection-card {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    box-shadow: var(--panel-shadow);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.connection-top {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+}
+
+.connection-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: #222;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+    object-fit: cover;
+    flex-shrink: 0;
+    font-size: .7rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1rem;
+    text-align: center;
+}
+
+.connection-headline {
+    color: var(--text-main);
+    font-size: .95rem;
+    font-weight: 500;
+}
+
+.connection-role {
+    color: var(--text-dim);
+    font-size: .8rem;
+}
+
+.connection-desc {
+    color: var(--text-dim);
+    font-size: .8rem;
+    line-height: 1.3rem;
+    margin-top: .75rem;
+    flex-grow: 1;
+}
+
+.connection-links {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.connection-links a {
+    font-size: .8rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    line-height: 1.2rem;
+    padding: .5rem .75rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--text-main);
+}
+
+.connection-links a:hover {
+    background: rgba(255, 255, 255, 0.07);
+}

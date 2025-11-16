@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Third Degree Burn — Ayaan Asif</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-page="home">
+
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a class="nav-left" href="index.html">
+        <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+        <div class="brand-name">Third Degree Burn</div>
+      </a>
+
+      <div class="nav-burger"><span></span><span></span><span></span></div>
+
+      <div class="nav-right">
+        <a class="nav-link" data-page="home" href="index.html">Home</a>
+        <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+        <a class="nav-link" data-page="upload" href="upload.html">3D Print Upload</a>
+        <a class="nav-link" data-page="convert" href="convert.html">Image → STL</a>
+        <a class="nav-link" data-page="games" href="games.html">Games</a>
+        <a class="nav-link" data-page="connections" href="connections.html">Connections</a>
+        <!-- external nice pills -->
+        <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
+          Weather Viz
+        </a>
+        <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">
+          Space / Earth
+        </a>
+        <a class="nav-link" data-page="about" href="about.html">About</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- HERO BG WRAPPER -->
+  <div class="home-hero-bg">
+    <main class="container">
+      <section class="hero-shell">
+        <div>
+          <h1 class="home-title">Hi, I'm Ayaan.</h1>
+          <p class="home-sub">
+            I design & print functional 3D parts, build Unity games, and train / evaluate AI systems.
+            Everything folds under <strong>ThirdDegreeBurn</strong>.
+          </p>
+
+          <div class="quick-links-grid">
+            <a class="feature-link" href="portfolio.html">
+              <span class="label">3D Library</span>
+              <span class="title">Portfolio viewer</span>
+              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">View STL parts →</span>
+            </a>
+            <a class="feature-link" href="upload.html">
+              <span class="label">Custom part</span>
+              <span class="title">Upload & preview STL</span>
+              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">With color picker</span>
+            </a>
+            <a class="feature-link" href="convert.html">
+              <span class="label">Image tool</span>
+              <span class="title">Image → STL</span>
+              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">Heightmap generator</span>
+            </a>
+            <a class="feature-link" href="games.html">
+              <span class="label">Playground</span>
+              <span class="title">Nyan Knives & Dino</span>
+              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">Videos & future WebGL</span>
+            </a>
+            <a class="feature-link" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
+              <span class="label">Viz</span>
+              <span class="title">Weather map</span>
+              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">External →</span>
+            </a>
+            <a class="feature-link" href="connections.html">
+              <span class="label">Network</span>
+              <span class="title">Connections</span>
+              <span style="font-size:.7rem;color:rgba(255,255,255,.5);">Partner links</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="right-summary">
+          <h2>What I do</h2>
+          <ul>
+            <li>I enjoy building things, from software and games to 3D prints and physics simulations</li>
+            <li>Unity game developer</li>
+            <li>AI/LLM training & evaluation (Data Annotation Tech)</li>
+          </ul>
+          <div class="note">
+            True wealth cannot be measured in gold, but in experience, age, and everything that comes with it, is a blessing
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    © <span id="year"></span> Third Degree Burn / Ayaan Asif ·
+    <a href="about.html">Contact</a>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

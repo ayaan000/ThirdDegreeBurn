@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Image → STL — Third Degree Burn</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/convert.css" />
+  <style>
+    /* page-level tweaks (keeps your global style) */
+    body[data-page="convert"] main.container {
+      gap: 1.75rem;
+    }
+    .convert-hero {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .convert-hint-box {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: .75rem;
+      padding: .75rem .9rem;
+      font-size: .75rem;
+      max-width: 18rem;
+      color: var(--text-dim);
+    }
+    .convert-shell {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    @media (max-width: 960px) {
+      .convert-shell {
+        grid-template-columns: 1fr;
+      }
+      .convert-hero {
+        flex-direction: column;
+      }
+    }
+    .label {
+      font-size: .8rem;
+      margin-bottom: .35rem;
+      display: block;
+      color: rgba(255,255,255,.7);
+    }
+    .input-field {
+      width: 100%;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: .5rem;
+      padding: .4rem .55rem;
+      color: #fff;
+      font-size: .8rem;
+    }
+    .two-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .75rem;
+      margin-top: .75rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      border: 0;
+      color: #000;
+      font-weight: 600;
+      border-radius: .6rem;
+      padding: .55rem .9rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: .1s ease;
+    }
+    .btn-primary:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #fff;
+      border-radius: .6rem;
+      padding: .5rem .9rem;
+      margin-top: .75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .75rem;
+    }
+    .convert-msg {
+      font-size: .7rem;
+      color: rgba(255,255,255,.5);
+      margin-top: .35rem;
+    }
+    .error-msg {
+      font-size: .7rem;
+      color: #ff6d6d;
+      margin-top: .25rem;
+    }
+    .img-preview-box {
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.03);
+      border-radius: .75rem;
+      min-height: 240px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .img-preview-box img {
+      max-width: 100%;
+      max-height: 100%;
+      display: none;
+    }
+    .empty-text {
+      font-size: .75rem;
+      color: rgba(255,255,255,.35);
+    }
+    .preview-note {
+      font-size: .7rem;
+      color: rgba(255,255,255,.35);
+      margin-top: .35rem;
+    }
+    /* advanced block */
+    .advanced-toggle {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      cursor: pointer;
+      font-size: .75rem;
+      color: rgba(255,255,255,.6);
+    }
+    .advanced-panel {
+      margin-top: .75rem;
+      border: 1px solid rgba(255,255,255,.05);
+      border-radius: .75rem;
+      background: rgba(0,0,0,.2);
+      padding: .75rem .75rem .25rem;
+      display: none;
+      gap: .75rem;
+    }
+    .advanced-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: .75rem;
+    }
+  </style>
+</head>
+<body data-page="convert">
+
+  <!-- NAVBAR -->
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a class="nav-left" href="index.html">
+        <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+        <div class="brand-name">Third Degree Burn</div>
+      </a>
+      <div class="nav-burger"><span></span><span></span><span></span></div>
+      <div class="nav-right">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="portfolio.html">Portfolio</a>
+        <a class="nav-link" href="upload.html">3D Print Upload</a>
+        <a class="nav-link active" href="convert.html">Image → STL</a>
+        <a class="nav-link" href="games.html">Games</a>
+        <a class="nav-link" href="connections.html">Connections</a>
+        <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
+          Weather Viz
+        </a>
+        <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">
+          Space / Earth
+        </a>
+        <a class="nav-link" href="about.html">About</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="container">
+    <header class="convert-hero">
+      <div>
+        <h1 style="margin-bottom:.4rem;">Image → STL Converter</h1>
+        <p style="color:var(--text-dim);max-width:44rem;">
+          Turn a flat image into a 3D heightmap with a controllable base. Choose width/height in mm,
+          lock aspect ratio, and fine-tune the geometry in the Advanced panel. Download STL instantly —
+          no backend required.
+        </p>
+      </div>
+      <div class="convert-hint-box">
+        <strong>Best results:</strong><br/>
+        use monochrome / logo / high contrast images.<br/>
+        Bigger base → more triangles.
+      </div>
+    </header>
+
+    <section class="convert-shell">
+      <!-- LEFT -->
+      <div class="convert-left">
+        <label for="imageInput" class="label">Choose Image</label>
+        <input type="file" id="imageInput" accept="image/png, image/jpeg" class="input-field" />
+        <div id="imageError" class="error-msg"></div>
+
+        <div class="two-cols">
+          <div>
+            <label class="label">Base Width (X, mm)</label>
+            <input type="number" id="baseWidth" class="input-field" value="100" min="10" max="500" />
+          </div>
+          <div>
+            <label class="label">Base Height (Y, mm)</label>
+            <input type="number" id="baseHeight" class="input-field" value="100" min="10" max="500" />
+          </div>
+        </div>
+
+        <div class="two-cols">
+          <div>
+            <label class="label">Extrude Height (Z, mm)</label>
+            <input type="number" id="extrudeHeight" class="input-field" value="10" min="1" max="100" />
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-top:1.5rem;">
+            <input type="checkbox" id="lockAspect" checked />
+            <label for="lockAspect" style="font-size:.75rem;">Lock aspect ratio</label>
+          </div>
+        </div>
+
+        <!-- ADVANCED DROPDOWN -->
+        <div class="advanced-toggle" id="advancedToggle">
+          <span>▸</span> Advanced options
+        </div>
+        <div class="advanced-panel" id="advancedPanel">
+          <div class="advanced-grid">
+            <div>
+              <label class="label">Base thickness (mm)</label>
+              <input type="number" id="baseThickness" class="input-field" value="1.5" min="0.5" max="10" step="0.1" />
+            </div>
+            <div>
+              <label class="label">Sample quality</label>
+              <select id="sampleQuality" class="input-field">
+                <option value="low">Low (64px)</option>
+                <option value="med" selected>Medium (96px)</option>
+                <option value="high">High (128px)</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            <div id="customResWrap" style="display:none;">
+              <label class="label">Custom res (px)</label>
+              <input type="number" id="customRes" class="input-field" value="128" min="32" max="256" step="8" />
+            </div>
+            <div>
+              <label class="label">Height curve</label>
+              <select id="heightCurve" class="input-field">
+                <option value="linear" selected>Linear</option>
+                <option value="sqrt">Sqrt (soft)</option>
+                <option value="quad">Quadratic (steeper)</option>
+              </select>
+            </div>
+            <div style="display:flex;align-items:center;gap:.4rem;margin-top:.65rem;">
+              <input type="checkbox" id="invertHeight" />
+              <label for="invertHeight" style="font-size:.7rem;">Invert (dark = tall)</label>
+            </div>
+            <div>
+              <label class="label">Clamp low (%)</label>
+              <input type="number" id="clampLow" class="input-field" value="4" min="0" max="30" />
+            </div>
+            <div style="display:flex;align-items:center;gap:.4rem;margin-top:.65rem;">
+              <input type="checkbox" id="addBevel" />
+              <label for="addBevel" style="font-size:.7rem;">Bevel edges</label>
+            </div>
+            <div>
+              <label class="label">File name</label>
+              <input type="text" id="fileName" class="input-field" value="image_heightmap" />
+            </div>
+          </div>
+        </div>
+
+        <button id="convertBtn" class="btn-primary" disabled>Convert to STL</button>
+        <a id="downloadLink" class="btn-secondary" style="display:none;" download="image_heightmap.stl">
+          Download STL
+        </a>
+        <p id="convertMsg" class="convert-msg"></p>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="convert-right">
+        <h3 style="margin-bottom:.35rem;">Preview</h3>
+        <div id="imagePreviewContainer" class="img-preview-box">
+          <span class="empty-text">No image selected</span>
+          <img id="imagePreview" src="" alt="Preview" />
+        </div>
+        <p class="preview-note">
+          2D preview only. Generated STL will include base (X/Y) + heightmap extrude (Z).
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Third Degree Burn / Ayaan Asif</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const imgInput = document.getElementById("imageInput");
+    const imgPreview = document.getElementById("imagePreview");
+    const previewBox = document.getElementById("imagePreviewContainer");
+    const imgErr = document.getElementById("imageError");
+    const convertBtn = document.getElementById("convertBtn");
+    const downloadLink = document.getElementById("downloadLink");
+    const msg = document.getElementById("convertMsg");
+
+    const baseWidth = document.getElementById("baseWidth");
+    const baseHeight = document.getElementById("baseHeight");
+    const extrudeHeight = document.getElementById("extrudeHeight");
+    const lockAspect = document.getElementById("lockAspect");
+
+    const advancedToggle = document.getElementById("advancedToggle");
+    const advancedPanel = document.getElementById("advancedPanel");
+    const baseThickness = document.getElementById("baseThickness");
+    const sampleQuality = document.getElementById("sampleQuality");
+    const customResWrap = document.getElementById("customResWrap");
+    const customRes = document.getElementById("customRes");
+    const heightCurve = document.getElementById("heightCurve");
+    const invertHeight = document.getElementById("invertHeight");
+    const clampLow = document.getElementById("clampLow");
+    const addBevel = document.getElementById("addBevel");
+    const fileNameField = document.getElementById("fileName");
+
+    let loadedImg = null;
+
+    // toggle advanced
+    advancedToggle.addEventListener("click", () => {
+      const open = advancedPanel.style.display === "block";
+      advancedPanel.style.display = open ? "none" : "block";
+      advancedToggle.firstElementChild.textContent = open ? "▸" : "▾";
+    });
+
+    // quality dropdown
+    sampleQuality.addEventListener("change", () => {
+      customResWrap.style.display = sampleQuality.value === "custom" ? "block" : "none";
+    });
+
+    // image load / preview
+    imgInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      imgErr.textContent = "";
+      msg.textContent = "";
+      downloadLink.style.display = "none";
+      if (!file) return;
+      if (!["image/png", "image/jpeg"].includes(file.type)) {
+        imgErr.textContent = "Only PNG or JPEG allowed.";
+        imgInput.value = "";
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const im = new Image();
+        im.onload = () => {
+          loadedImg = im;
+          imgPreview.src = im.src;
+          imgPreview.style.display = "block";
+          previewBox.querySelector(".empty-text")?.remove();
+          convertBtn.disabled = false;
+
+          if (lockAspect.checked) {
+            const ratio = im.height / im.width;
+            baseHeight.value = Math.round(baseWidth.value * ratio);
+          }
+        };
+        im.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // maintain aspect if locked
+    baseWidth.addEventListener("input", () => {
+      if (loadedImg && lockAspect.checked) {
+        const ratio = loadedImg.height / loadedImg.width;
+        baseHeight.value = Math.round(baseWidth.value * ratio);
+      }
+    });
+    lockAspect.addEventListener("change", () => {
+      if (loadedImg && lockAspect.checked) {
+        const ratio = loadedImg.height / loadedImg.width;
+        baseHeight.value = Math.round(baseWidth.value * ratio);
+      }
+    });
+
+    // core conversion
+    convertBtn.addEventListener("click", () => {
+      if (!loadedImg) return;
+      msg.textContent = "Converting… (may take a moment)";
+      const bw = Math.max(10, parseFloat(baseWidth.value) || 100);
+      const bh = Math.max(10, parseFloat(baseHeight.value) || 100);
+      const eh = Math.max(1, parseFloat(extrudeHeight.value) || 10);
+      const bt = Math.max(0.3, parseFloat(baseThickness.value) || 1.5);
+      const clampPct = Math.max(0, Math.min(30, parseFloat(clampLow.value) || 0)) / 100;
+
+      let res;
+      switch (sampleQuality.value) {
+        case "low": res = 64; break;
+        case "med": res = 96; break;
+        case "high": res = 128; break;
+        case "custom": default:
+          res = Math.max(32, Math.min(256, parseInt(customRes.value) || 128));
+      }
+
+      // draw image to canvas → grayscale → height
+      const canvas = document.createElement("canvas");
+      canvas.width = res;
+      canvas.height = res;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(loadedImg, 0, 0, res, res);
+      const imgData = ctx.getImageData(0, 0, res, res).data;
+
+      // generate height field
+      const heightField = [];
+      for (let y = 0; y < res; y++) {
+        const row = [];
+        for (let x = 0; x < res; x++) {
+          const idx = (y * res + x) * 4;
+          let r = imgData[idx], g = imgData[idx+1], b = imgData[idx+2];
+          let v = (r + g + b) / 3 / 255; // 0..1
+          if (invertHeight.checked) v = 1 - v;
+          // clamp low
+          if (v < clampPct) v = clampPct;
+          // curve
+          switch (heightCurve.value) {
+            case "sqrt": v = Math.sqrt(v); break;
+            case "quad": v = v * v; break;
+            default: break;
+          }
+          row.push(v);
+        }
+        heightField.push(row);
+      }
+
+      // make STL from heightField
+      const stl = heightmapToSTL(heightField, {
+        baseWidth: bw,
+        baseHeight: bh,
+        extrudeHeight: eh,
+        baseThickness: bt,
+        bevel: addBevel.checked
+      });
+
+      const blob = new Blob([stl], { type: "model/stl" });
+      const url = URL.createObjectURL(blob);
+      const fnameRaw = fileNameField.value.trim() || "image_heightmap";
+      downloadLink.download = fnameRaw + ".stl";
+      downloadLink.href = url;
+      downloadLink.style.display = "inline-flex";
+      msg.textContent = "Done. STL ready.";
+    });
+
+    // very small ASCII STL generator for a heightmap + flat base
+    function heightmapToSTL(grid, opts) {
+      const { baseWidth, baseHeight, extrudeHeight, baseThickness, bevel } = opts;
+      const rows = grid.length;
+      const cols = grid[0].length;
+      const stepX = baseWidth / (cols - 1);
+      const stepY = baseHeight / (rows - 1);
+
+      let stl = "solid image_heightmap\n";
+
+      // 1) base plate (simple rectangular prism, optional bevel just means shrink top)
+      // bottom z = 0
+      // top z = baseThickness
+      const bw = baseWidth;
+      const bh = baseHeight;
+      const z0 = 0;
+      const z1 = baseThickness;
+
+      // we build base as two triangles per face (top and bottom and 4 sides)
+      // top (maybe beveled)
+      const bevelInset = bevel ? Math.min(bw, bh) * 0.02 : 0;
+      const topPts = [
+        [0+bevelInset, 0+bevelInset, z1],
+        [bw-bevelInset, 0+bevelInset, z1],
+        [bw-bevelInset, bh-bevelInset, z1],
+        [0+bevelInset, bh-bevelInset, z1],
+      ];
+      const bottomPts = [
+        [0, 0, z0],
+        [bw, 0, z0],
+        [bw, bh, z0],
+        [0, bh, z0],
+      ];
+
+      // base top
+      stl += quadToStl(topPts[0], topPts[1], topPts[2], topPts[3], true);
+      // base bottom
+      stl += quadToStl(bottomPts[0], bottomPts[1], bottomPts[2], bottomPts[3], false);
+      // sides
+      stl += quadToStl(bottomPts[0], bottomPts[1], topPts[1], topPts[0], true);
+      stl += quadToStl(bottomPts[1], bottomPts[2], topPts[2], topPts[1], true);
+      stl += quadToStl(bottomPts[2], bottomPts[3], topPts[3], topPts[2], true);
+      stl += quadToStl(bottomPts[3], bottomPts[0], topPts[0], topPts[3], true);
+
+      // 2) heightmap surface on TOP of base
+      for (let y = 0; y < rows - 1; y++) {
+        for (let x = 0; x < cols - 1; x++) {
+          const x0 = x * stepX;
+          const x1 = (x + 1) * stepX;
+          const y0 = y * stepY;
+          const y1 = (y + 1) * stepY;
+
+          const zA = z1 + grid[y][x] * extrudeHeight;
+          const zB = z1 + grid[y][x+1] * extrudeHeight;
+          const zC = z1 + grid[y+1][x+1] * extrudeHeight;
+          const zD = z1 + grid[y+1][x] * extrudeHeight;
+
+          // two triangles: A-B-C and A-C-D
+          const A = [x0, y0, zA];
+          const B = [x1, y0, zB];
+          const C = [x1, y1, zC];
+          const D = [x0, y1, zD];
+
+          stl += triToStl(A, B, C);
+          stl += triToStl(A, C, D);
+        }
+      }
+
+      stl += "endsolid image_heightmap\n";
+      return stl;
+
+      function triToStl(p1, p2, p3) {
+        const n = normal(p1, p2, p3);
+        return `facet normal ${n[0]} ${n[1]} ${n[2]}\nouter loop\nvertex ${p1[0]} ${p1[1]} ${p1[2]}\nvertex ${p2[0]} ${p2[1]} ${p2[2]}\nvertex ${p3[0]} ${p3[1]} ${p3[2]}\nendloop\nendfacet\n`;
+      }
+      function quadToStl(p1, p2, p3, p4, up) {
+        // p1-p2-p3, p1-p3-p4
+        const t1 = triToStl(p1, p2, up ? p3 : p4);
+        const t2 = triToStl(p1, up ? p3 : p4, p4);
+        return t1 + t2;
+      }
+      function normal(p1, p2, p3) {
+        const u = [p2[0]-p1[0], p2[1]-p1[1], p2[2]-p1[2]];
+        const v = [p3[0]-p1[0], p3[1]-p1[1], p3[2]-p1[2]];
+        const nx = u[1]*v[2] - u[2]*v[1];
+        const ny = u[2]*v[0] - u[0]*v[2];
+        const nz = u[0]*v[1] - u[1]*v[0];
+        const len = Math.sqrt(nx*nx + ny*ny + nz*nz) || 1;
+        return [ (nx/len).toFixed(6), (ny/len).toFixed(6), (nz/len).toFixed(6) ];
+      }
+    }
+  </script>
+</body>
+</html>

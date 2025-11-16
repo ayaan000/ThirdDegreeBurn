@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Games — Third Degree Burn</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/games.css" />
+</head>
+<body data-page="games">
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a class="nav-left" href="index.html">
+        <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+        <div class="brand-name">Third Degree Burn</div>
+      </a>
+      <div class="nav-burger"><span></span><span></span><span></span></div>
+      <div class="nav-right">
+        <a class="nav-link" data-page="home" href="index.html">Home</a>
+        <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+        <a class="nav-link" data-page="upload" href="upload.html">3D Print Upload</a>
+        <a class="nav-link" data-page="convert" href="convert.html">Image → STL</a>
+        <a class="nav-link active" data-page="games" href="games.html">Games</a>
+        <a class="nav-link" data-page="connections" href="connections.html">Connections</a>
+        <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">Weather Viz</a>
+        <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">Space / Earth</a>
+        <a class="nav-link" data-page="about" href="about.html">About</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="container games-page">
+    <section class="hero-grid game-hero">
+      <div class="hero-left">
+        <h1 class="intro-title">NyanKnives</h1>
+        <p class="intro-lead">
+          Unity prototype. High-mobility dash + melee.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-accent" href="assets/games/NyanKnives_Windows.zip" download>
+            Download for Windows (.zip)
+          </a>
+        </div>
+        <p class="intro-meta">
+          Windows only. Unzip and run <strong>NyanKnives.exe</strong>.
+        </p>
+      </div>
+      <aside class="info-panel">
+        <h4>Details</h4>
+        <ul>
+          <li>Engine: Unity / C#</li>
+          <li>Movement: dash / burst reposition</li>
+          <li>Combat: close-range knife timing</li>
+        </ul>
+        <div class="hint">
+          Raw gameplay from the actual build is below.
+        </div>
+      </aside>
+    </section>
+
+    <section class="quick-access-wrapper">
+      <div class="quick-header">
+        <div class="quick-title">
+          <div class="dot"></div>
+          <div>NyanKnives — gameplay capture</div>
+        </div>
+        <div class="quick-note">Captured from the original build</div>
+      </div>
+      <div class="nyan-frame-shell">
+        <video
+          src="assets/games/nyanknives-preview.mp4"
+          controls
+          muted
+          playsinline
+          class="game-media">
+          Your browser can’t play this video.
+        </video>
+        <p class="media-caption">Direct capture of NyanKnives gameplay</p>
+      </div>
+    </section>
+
+    <section class="quick-access-wrapper">
+      <div class="quick-header">
+        <div class="quick-title">
+          <div class="dot"></div>
+          <div>Raptor Run</div>
+        </div>
+        <div class="quick-note">Mobile-style infinite runner prototype</div>
+      </div>
+      <div class="nyan-frame-shell">
+        <img
+          src="assets/games/runner-preview.gif"
+          alt="Endless runner gameplay preview"
+          class="game-media" />
+        <p class="media-caption">
+          Temple run inspired endless runner with a dinosaur theme.
+        </p>
+        <p class="media-subtle">Not publicly downloadable yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Third Degree Burn / Ayaan Asif</div>
+    <div>
+      <a href="about.html">Contact</a> ·
+      <a href="about.html#resume">Resume</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

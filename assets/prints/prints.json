@@ -1,0 +1,48 @@
+{
+    "prints": [
+        {
+            "name": "airless football",
+            "file": "assets/prints/airless football.stl"
+        },
+        {
+            "name": "coin",
+            "file": "assets/prints/coin.stl"
+        },
+        {
+            "name": "dice",
+            "file": "assets/prints/dice.stl"
+        },
+        {
+            "name": "hello kitty",
+            "file": "assets/prints/hello kitty.stl"
+        },
+        {
+            "name": "Propellor",
+            "file": "assets/prints/Propellor.stl"
+        },
+        {
+            "name": "retractable sword",
+            "file": "assets/prints/retractable sword.stl"
+        },
+        {
+            "name": "rose",
+            "file": "assets/prints/rose.stl"
+        },
+        {
+            "name": "SharkB",
+            "file": "assets/prints/SharkB.stl"
+        },
+        {
+            "name": "skull",
+            "file": "assets/prints/skull.stl"
+        },
+        {
+            "name": "spikeball leg",
+            "file": "assets/prints/spikeball leg.stl"
+        },
+        {
+            "name": "spikeball rim",
+            "file": "assets/prints/spikeball rim.stl"
+        }
+    ]
+}

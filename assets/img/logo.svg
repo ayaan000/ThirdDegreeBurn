@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <!-- orange glow -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+      </feMerge>
+    </filter>
+
+    <!-- flame gradient -->
+    <linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffdd55"/>
+      <stop offset="40%" stop-color="#ff8c00"/>
+      <stop offset="100%" stop-color="#2b0a00"/>
+    </linearGradient>
+
+    <!-- dark panel gradient -->
+    <radialGradient id="panelGrad" cx="30%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="70%" stop-color="#000000"/>
+    </radialGradient>
+  </defs>
+
+  <!-- rounded dark panel base -->
+  <rect x="16" y="16" width="224" height="224" rx="28"
+        fill="url(#panelGrad)"
+        stroke="#ff8c00"
+        stroke-width="4"/>
+
+  <!-- outer orange glow ring -->
+  <rect x="16" y="16" width="224" height="224" rx="28"
+        fill="none"
+        stroke="#ff8c00"
+        stroke-width="8"
+        opacity="0.4"
+        filter="url(#glow)"/>
+
+  <!-- molten flame shape behind text -->
+  <path d="M128 205
+           c28-18 44-38 44-60
+           0-14-6-23-11-30
+           4 20-3 28-10 28
+           0-22-16-34-16-56
+           0-12 4-22 10-30
+           -22 8-40 28-40 52
+           0 10 2 18 5 24
+           -6-4-12-12-14-22
+           -8 10-12 20-12 32
+           0 30 22 52 54 62z"
+        fill="url(#flameGrad)"
+        filter="url(#glow)"
+        opacity="0.9"/>
+
+  <!-- Brand text stacked -->
+  <!-- Top line: THIRD -->
+  <text x="128" y="118"
+        text-anchor="middle"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="32"
+        font-weight="700"
+        fill="#ffffff"
+        letter-spacing="0.06em">
+    THIRD
+  </text>
+
+  <!-- Middle line: DEGREE -->
+  <text x="128" y="152"
+        text-anchor="middle"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="28"
+        font-weight="600"
+        fill="#ffffff"
+        letter-spacing="0.08em">
+    DEGREE
+  </text>
+
+  <!-- Bottom line: BURN -->
+  <text x="128" y="188"
+        text-anchor="middle"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="32"
+        font-weight="700"
+        fill="#ff8c00"
+        letter-spacing="0.12em">
+    BURN
+  </text>
+</svg>

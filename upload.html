@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>3D Print Upload — Third Degree Burn</title>
+
+  <!-- global styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- page styles -->
+  <link rel="stylesheet" href="assets/css/upload.css" />
+
+  <!-- three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+
+  <!-- IMPORTANT: make this global BEFORE we load your old upload.js -->
+  <script>
+    // used by your existing portfolio.js / upload.js to resolve STL paths
+    window.encodeSTLPath = function (name) {
+      return "assets/prints/" + encodeURIComponent(name);
+    };
+  </script>
+</head>
+<body data-page="upload">
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a class="nav-left" href="index.html">
+        <img class="logo" src="assets/img/spacefox.webp" alt="Logo" />
+        <div class="brand-name">Third Degree Burn</div>
+      </a>
+      <div class="nav-burger"><span></span><span></span><span></span></div>
+      <div class="nav-right">
+        <a class="nav-link" data-page="home" href="index.html">Home</a>
+        <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+        <a class="nav-link active" data-page="upload" href="upload.html">3D Print Upload</a>
+        <a class="nav-link" data-page="convert" href="convert.html">Image → STL</a>
+        <a class="nav-link" data-page="games" href="games.html">Games</a>
+        <a class="nav-link" data-page="connections" href="connections.html">Connections</a>
+        <!-- external viz links -->
+        <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">Weather Viz</a>
+        <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">Space / Earth</a>
+        <a class="nav-link" data-page="about" href="about.html">About</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="container">
+    <h1 class="home-title upload-title">3D Print Upload</h1>
+    <p class="home-sub upload-sub">
+      Upload your own STL <strong>or</strong> pick from your library in <code>assets/prints</code>. Preview in 3D and choose a color.
+    </p>
+
+    <div class="upload-grid">
+      <!-- left: viewer -->
+      <div class="upload-left">
+        <div class="color-swatch-row" id="uploadSwatches">
+          <div class="color-swatch" data-color="#ffffff" style="background:#fff;border:1px solid #444;"></div>
+          <div class="color-swatch" data-color="#000000" style="background:#000;"></div>
+          <div class="color-swatch" data-color="#ff0000" style="background:#ff0000;"></div>
+          <div class="color-swatch" data-color="#00ff00" style="background:#00ff00;"></div>
+          <div class="color-swatch" data-color="#0000ff" style="background:#0000ff;"></div>
+          <div class="color-swatch" data-color="#ffa500" style="background:#ffa500;"></div>
+          <div class="color-swatch" data-color="#ffff00" style="background:#ffff00;"></div>
+        </div>
+        <div class="viewer-shell" id="uploadViewer"></div>
+      </div>
+
+      <!-- right: form -->
+      <div class="upload-panel">
+        <h2>Upload or select</h2>
+
+        <label class="upload-label">Choose STL file</label>
+        <input type="file" id="stlInput" accept=".stl" class="upload-input" />
+
+        <label class="upload-label" style="margin-top:.4rem;">...or pick from library</label>
+        <div class="select-shell">
+          <select id="librarySelect" class="upload-input upload-select">
+            <option value="">— choose from uploads —</option>
+          </select>
+          <span class="select-caret">▼</span>
+        </div>
+        <div id="libraryInfo" class="upload-hint"></div>
+
+        <label class="upload-label">Part name</label>
+        <input type="text" id="partName" class="upload-input" placeholder="e.g. Spikeball Rim Replacement" />
+
+        <label class="upload-label">Description</label>
+        <textarea id="partDesc" rows="3" class="upload-input" placeholder="Short description of your part"></textarea>
+
+        <button id="fakeSubmitBtn" class="upload-btn">Save to cart (front-end demo)</button>
+        <div id="uploadMsg" class="upload-msg"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    © <span id="year"></span> Third Degree Burn / Ayaan Asif
+  </footer>
+
+  <!-- your existing scripts (NOW they see encodeSTLPath) -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/portfolio.js"></script>
+  <script src="assets/js/upload.js"></script>
+
+  <!-- inline viewer logic -->
+  <script>
+    let scene, camera, renderer, controls, currentMesh = null, selectedColor = "#ffffff";
+
+    function initUploadViewer() {
+      const el = document.getElementById("uploadViewer");
+      const w = el.clientWidth || 600;
+      const h = el.clientHeight || 420;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio || 1);
+      renderer.setClearColor(0x000000, 0);
+      renderer.setSize(w, h);
+      el.appendChild(renderer.domElement);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+
+      const l1 = new THREE.DirectionalLight(0xffffff, 0.9);
+      l1.position.set(-1, 1, 1);
+      scene.add(l1);
+      const l2 = new THREE.DirectionalLight(0xffffff, 0.5);
+      l2.position.set(1, 1, 0.5);
+      scene.add(l2);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+
+      camera.position.set(0, 0, 3);
+
+      (function anim() {
+        requestAnimationFrame(anim);
+        controls.update();
+        renderer.render(scene, camera);
+      })();
+
+      window.addEventListener("resize", () => {
+        const box = document.getElementById("uploadViewer");
+        const w2 = box.clientWidth;
+        const h2 = box.clientHeight;
+        if (!w2 || !h2) return;
+        camera.aspect = w2 / h2;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w2, h2);
+      });
+    }
+
+    async function loadSTLFromURL(url) {
+      const loader = new THREE.STLLoader();
+      const res = await fetch(url);
+      const buf = await res.arrayBuffer();
+      const geo = loader.parse(buf);
+      showGeo(geo);
+    }
+
+    function showGeo(geo) {
+      if (currentMesh) {
+        scene.remove(currentMesh);
+        currentMesh.geometry.dispose();
+        currentMesh.material.dispose();
+      }
+      const mat = new THREE.MeshPhongMaterial({ color: new THREE.Color(selectedColor) });
+      const mesh = new THREE.Mesh(geo, mat);
+      scene.add(mesh);
+      currentMesh = mesh;
+
+      geo.computeBoundingBox();
+      const box = geo.boundingBox;
+      const center = box.getCenter(new THREE.Vector3());
+      mesh.position.sub(center);
+
+      const size = box.getSize(new THREE.Vector3());
+      const max = Math.max(size.x, size.y, size.z);
+      camera.position.set(0, 0, max * 2.2);
+      controls.update();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initUploadViewer();
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // swatches
+      document.querySelectorAll("#uploadSwatches .color-swatch").forEach((sw) => {
+        sw.addEventListener("click", () => {
+          document.querySelectorAll("#uploadSwatches .color-swatch").forEach(n => n.classList.remove("selected"));
+          sw.classList.add("selected");
+          selectedColor = sw.dataset.color;
+          if (currentMesh) currentMesh.material.color.set(selectedColor);
+        });
+      });
+      const first = document.querySelector("#uploadSwatches .color-swatch");
+      if (first) first.classList.add("selected");
+
+      // local file
+      const input = document.getElementById("stlInput");
+      input.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const loader = new THREE.STLLoader();
+          const geo = loader.parse(ev.target.result);
+          showGeo(geo);
+          document.getElementById("uploadMsg").textContent = "Previewed local STL.";
+        };
+        reader.readAsArrayBuffer(file);
+      });
+
+      // library
+      const libSelect = document.getElementById("librarySelect");
+      libSelect.addEventListener("change", () => {
+        if (libSelect.value) {
+          loadSTLFromURL(window.encodeSTLPath(libSelect.value));
+          document.getElementById("libraryInfo").textContent = "Loaded: " + libSelect.value;
+        } else {
+          document.getElementById("libraryInfo").textContent = "";
+        }
+      });
+
+      // fake submit
+      document.getElementById("fakeSubmitBtn").addEventListener("click", () => {
+        const name = document.getElementById("partName").value.trim();
+        document.getElementById("uploadMsg").textContent =
+          name ? `Saved (front-end demo): ${name}` : "Saved (front-end demo).";
+      });
+    });
+  </script>
+</body>
+</html>

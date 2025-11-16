@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>About / Contact — Third Degree Burn</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/about.css" />
+</head>
+
+<body class="about-page" data-page="about">
+  <!-- NAVBAR -->
+ <div class="navbar-wrap">
+  <nav class="navbar">
+    <a class="nav-left" href="index.html">
+      <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+      <div class="brand-name">Third Degree Burn</div>
+    </a>
+
+    <div class="nav-burger"><span></span><span></span><span></span></div>
+
+    <div class="nav-right">
+      <a class="nav-link" data-page="home" href="index.html">Home</a>
+      <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+      <a class="nav-link" data-page="upload" href="upload.html">3D Print Upload</a>
+      <a class="nav-link" data-page="convert" href="convert.html">Image → STL</a>
+      <a class="nav-link" data-page="games" href="games.html">Games</a>
+      <a class="nav-link" data-page="connections" href="connections.html">Connections</a>
+      <!-- external nice pills -->
+      <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
+        Weather Viz
+      </a>
+      <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">
+        Space / Earth
+      </a>
+      <a class="nav-link" data-page="about" href="about.html">About</a>
+    </div>
+  </nav>
+</div>
+
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="about-left-headline">
+        <div class="about-title">
+          <span>Ayaan Asif</span>
+          <span class="accent-badge">CS specialist and astrophysics minor @ UofT 2026</span>
+        </div>
+
+        <div class="about-lead">
+          I build things that cross software, simulation, and hardware.
+          I’m in my 4th year at the University of Toronto (CS Specialist, Astro minor)
+          <br /><br />
+          I’ve worked on model audit at <strong>Data Annotation Tech</strong>, gameplay systems for Unity projects,
+          and a bunch of fast 3D-print repair jobs. ThirdDegreeBurn is the place I park all of that.
+        </div>
+
+        <div class="about-contact-mini">
+          <div class="mini-contact-row">
+            <div class="mini-contact-label">Email</div>
+            <div class="mini-contact-value">
+              <span id="emailText">ayaan.asif@mail.utoronto.ca</span>
+              <span class="copy-btn" id="copyEmailBtn">copy</span>
+            </div>
+          </div>
+
+          <div class="mini-contact-row">
+            <div class="mini-contact-label">Location</div>
+            <div class="mini-contact-value">Toronto / Kolkata</div>
+          </div>
+
+          <div class="mini-contact-row">
+            <div class="mini-contact-label">Status</div>
+            <div class="mini-contact-value">New grad / full time — Summer ’26</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="about-right-card" id="resume">
+        <h2>Get in touch</h2>
+        <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:.5rem;">
+          Send me photos/specs of the part or a short brief for the game/system and I’ll tell you if I can do it quickly.
+        </p>
+        <p style="font-size:.85rem;">
+          <strong>Email:</strong> <span style="color:var(--accent);">ayaan.asif@mail.utoronto.ca</span><br />
+          <strong>Response:</strong> usually &lt; 24h
+        </p>
+        <div style="margin-top:1rem;">
+          <a class="resume-download-btn" href="assets/Ayaan_Asif_Resume.pdf" download>
+            Download Resume
+          </a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience-section">
+      <div class="section-heading">
+        <div class="dot"></div>
+        <div>Experience Snapshot</div>
+      </div>
+
+      <div class="exp-grid">
+        <div class="exp-card">
+          <div class="exp-title">Data Annotation Tech</div>
+          <div class="exp-roleline">AI / LLM Evaluation</div>
+          <div class="exp-dates">Toronto · Oct 2023 – Present</div>
+          <div>
+            Evaluated model outputs for correctness, safety, and task adherence; created/runs specialized rubrics;
+            gave high-precision written feedback; worked across code, reasoning, and instruction-following tasks.
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-title">Level 9</div>
+          <div class="exp-roleline">Unity Gameplay Developer</div>
+          <div class="exp-dates">Remote · May 2023 – June 2023</div>
+          <div>
+            Built a full runner game in Unity/C#: player movement, enemy hazards, spawning logic, and difficulty ramp.
+            Delivered a replayable prototype in weeks.
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-title">Mayubious Art LLP</div>
+          <div class="exp-roleline">Animation & Game Design</div>
+          <div class="exp-dates">Kolkata · Aug 2021 – Sept 2021</div>
+          <div>
+            Implemented combat and encounter logic in Unity, created scene flow and enemy wave scripts, and produced
+            supporting visual assets to keep gameplay readable.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills-section">
+      <div class="section-heading">
+        <div class="dot"></div>
+        <div>Skills & Capabilities</div>
+      </div>
+
+      <div class="skill-chips-wrap">
+        <!-- 1. Hire-me set -->
+        <div class="skill-group-label">Primary</div>
+        <div class="skill-chip">AI / LLM Evaluation & Prompt Design</div>
+        <div class="skill-chip">Physics-Based Animation (CSC417)</div>
+        <div class="skill-chip">Unity & C# Gameplay Systems</div>
+        <div class="skill-chip">3D Printing & CAD (Onshape / Cura)</div>
+        <div class="skill-chip">Functional Part Repair / Reverse-Engineering</div>
+        <div class="skill-chip">Full-Stack Web (JS / HTML / CSS)</div>
+
+        <!-- 2. Technical stack -->
+        <div class="skill-group-label">Technical</div>
+        <div class="skill-chip">C / C++ / C#</div>
+        <div class="skill-chip">Python (Astropy, Numpy, data pkgs)</div>
+        <div class="skill-chip">Java</div>
+        <div class="skill-chip">Three.js STL viewing</div>
+        <div class="skill-chip">Linux / Ubuntu / WSL workflow</div>
+        <div class="skill-chip">Data Structures & Algorithms</div>
+
+        <!-- 3. Domain / projects -->
+        <div class="skill-group-label">Projects & Domains</div>
+        <div class="skill-chip">Game prototyping (runners, chase AI)</div>
+        <div class="skill-chip">Supernova photometry tooling (UofT)</div>
+        <div class="skill-chip">Manufacturing / fabrication pipeline</div>
+        <div class="skill-chip">Interactive visualizations (D3-style)</div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section">
+      <div class="section-heading">
+        <div class="dot"></div>
+        <div>Build Gallery / Proof</div>
+      </div>
+
+      <p style="font-size:.9rem;color:var(--text-dim);max-width:50rem;margin-bottom:1.5rem;">
+        I’ll keep dropping real parts and game screenshots here. Click to zoom.
+      </p>
+
+      <div class="gallery-grid">
+        <div class="gallery-card" data-full="assets/img/gallery/part1-large.jpg">
+          <img class="gallery-img" src="assets/img/gallery/part1-thumb.jpg" alt="Custom part" />
+          <div class="gallery-label">Custom press-fit mount</div>
+        </div>
+
+        <div class="gallery-card" data-full="assets/img/gallery/printbed-large.jpg">
+          <img class="gallery-img" src="assets/img/gallery/printbed-thumb.jpg" alt="Print in progress" />
+          <div class="gallery-label">Impact-tolerant PETG</div>
+        </div>
+
+        <div class="gallery-card" data-full="assets/img/gallery/nyanknives-large.jpg">
+          <img class="gallery-img" src="assets/img/gallery/nyanknives-thumb.jpg" alt="Nyan Knives gameplay" />
+          <div class="gallery-label">Nyan Knives</div>
+        </div>
+
+        <div class="gallery-card" data-full="assets/img/gallery/setup-large.jpg">
+          <img class="gallery-img" src="assets/img/gallery/setup-thumb.jpg" alt="Workbench / setup" />
+          <div class="gallery-label">Bench / tooling setup</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <div class="lightbox-content">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="Preview"/>
+      <div class="lightbox-close" id="lightboxClose">close ✕</div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Third Degree Burn / Ayaan Asif</div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // copy email
+    (function() {
+      const emailTextEl = document.getElementById("emailText");
+      const copyBtn = document.getElementById("copyEmailBtn");
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(emailTextEl.textContent.trim()).then(() => {
+          const prev = copyBtn.textContent;
+          copyBtn.textContent = "copied";
+          setTimeout(() => copyBtn.textContent = prev, 1500);
+        });
+      });
+    })();
+
+    // lightbox
+    (function() {
+      const overlay = document.getElementById("lightboxOverlay");
+      const imgEl = document.getElementById("lightboxImg");
+      const closeBtn = document.getElementById("lightboxClose");
+
+      function openLightbox(src) {
+        imgEl.src = src;
+        overlay.classList.add("active");
+      }
+      function closeLightbox() {
+        overlay.classList.remove("active");
+        imgEl.src = "";
+      }
+
+      document.querySelectorAll(".gallery-card").forEach(card => {
+        card.addEventListener("click", () => {
+          const fullSrc = card.getAttribute("data-full");
+          if (fullSrc) openLightbox(fullSrc);
+        });
+      });
+      closeBtn.addEventListener("click", closeLightbox);
+      overlay.addEventListener("click", (e) => { if (e.target === overlay) closeLightbox(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
+    })();
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

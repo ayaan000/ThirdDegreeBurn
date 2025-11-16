@@ -1,0 +1,298 @@
+/* assets/css/style.css */
+/* ===== THEME & TOKENS ===== */
+:root {
+    --bg-main: #0a0a0a;
+    --bg-grad: radial-gradient(circle at 20% 20%, #151515 0%, #000 65%);
+    --accent: #ff8c00;
+    --accent-soft: rgba(255, 140, 0, 0.12);
+    --text-main: #ffffff;
+    --text-dim: #aaaaaa;
+    --panel: rgba(255, 255, 255, 0.03);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --panel-bg: rgba(0, 0, 0, 0.3);
+    /* added so connections/convert work */
+    --panel-shadow: 0 24px 40px rgba(0, 0, 0, .35);
+    --radius-lg: 1rem;
+    --radius-sm: .55rem;
+    --ff: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--bg-grad);
+    color: var(--text-main);
+    font-family: var(--ff);
+    line-height: 1.4;
+}
+
+/* ===== Navbar ===== */
+.navbar-wrap {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: .75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+.nav-left img.logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--accent);
+    box-shadow: 0 0 16px var(--accent);
+    object-fit: cover;
+}
+
+.brand-name {
+    font-size: 1rem;
+    font-weight: 650;
+    color: var(--accent);
+}
+
+.nav-right {
+    display: flex;
+    gap: .8rem;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: .85rem;
+    padding: .3rem .5rem;
+    border-radius: .35rem;
+    transition: background .1s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(255, 140, 0, .12);
+    color: #fff;
+}
+
+/* mobile */
+.nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.nav-burger span {
+    width: 22px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+}
+
+@media (max-width: 840px) {
+    .nav-right {
+        display: none;
+    }
+
+    .nav-right.open {
+        display: flex;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        border: 1px solid rgba(255, 255, 255, .08);
+        position: absolute;
+        right: 1rem;
+        top: 62px;
+        padding: .7rem 1rem;
+        border-radius: .5rem;
+    }
+
+    .nav-burger {
+        display: flex;
+    }
+}
+
+/* ===== Containers ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.7rem 1rem 4rem;
+}
+
+/* ===== Generic cards ===== */
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--panel-shadow);
+}
+
+/* ===== floating bg for home ===== */
+.floating-bg {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.float-card {
+    position: absolute;
+    width: 180px;
+    height: 110px;
+    background: radial-gradient(circle, rgba(255, 140, 0, .2) 0%, rgba(0, 0, 0, 0) 65%), rgba(255, 255, 255, .02);
+    border: 1px solid rgba(255, 255, 255, .05);
+    border-radius: 16px;
+    animation: drift 32s linear infinite;
+    backdrop-filter: blur(3px);
+}
+
+@keyframes drift {
+    to {
+        transform: translateY(-80vh) rotate(40deg);
+    }
+}
+
+/* ===== hero layout used on home ===== */
+
+/* HOME PAGE BIG LOGO BG
+   -------------------------------------------------- */
+body[data-page="home"] .home-hero-bg {
+    /* full viewport-ish, minus navbar */
+    min-height: calc(100vh - 60px);
+    background:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 35%, rgba(0, 0, 0, 0.9) 100%),
+        url("../img/spacefox.webp") center center / contain no-repeat;
+    /* if your css is placed in assets/css/, this path is correct */
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0 3.5rem;
+}
+
+body[data-page="home"] .hero-shell {
+    backdrop-filter: blur(3px);
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.25rem;
+    padding: 1.75rem 1.5rem 1.75rem;
+}
+
+/* keep cards readable over image */
+body[data-page="home"] .feature-link {
+    background: rgba(5, 5, 5, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(3px);
+}
+
+@media (max-width: 900px) {
+    body[data-page="home"] .home-hero-bg {
+        background:
+            linear-gradient(150deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 1) 100%),
+            url("../img/spacefox.webp") top center / 120% auto no-repeat;
+        padding-top: 1.5rem;
+    }
+
+    body[data-page="home"] .hero-shell {
+        background: rgba(0, 0, 0, 0.6);
+    }
+}
+
+.hero-shell {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .75fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 950px) {
+    .hero-shell {
+        grid-template-columns: 1fr;
+    }
+}
+
+.home-title {
+    font-size: clamp(2.4rem, 3vw, 3rem);
+    font-weight: 700;
+    margin-bottom: .25rem;
+}
+
+.home-sub {
+    font-size: 1.02rem;
+    color: var(--text-dim);
+    max-width: 42rem;
+}
+
+/* ===== quick links ===== */
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: .7rem;
+    margin-top: 1.5rem;
+}
+
+.feature-link {
+    background: rgba(0, 0, 0, .45);
+    border: 1px solid rgba(255, 255, 255, .04);
+    border-radius: .75rem;
+    padding: .7rem .75rem;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    transition: transform .1s, border .1s;
+}
+
+.feature-link span.label {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: rgba(255, 255, 255, .6);
+}
+
+.feature-link span.title {
+    font-weight: 600;
+}
+
+.feature-link:hover {
+    border: 1px solid rgba(255, 140, 0, .8);
+    transform: translateY(-2px);
+}
+
+/* ===== footer ===== */
+.footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: .7rem;
+    padding: 2.2rem 1rem 3.5rem;
+}
+
+.footer a {
+    color: var(--accent);
+    text-decoration: none;
+}

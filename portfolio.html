@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Portfolio — Third Degree Burn</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Bigger swatches */
+    #colorSwatches .color-swatch {
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    }
+    #colorSwatches .color-swatch.selected {
+      border-color: #ffffff;
+    }
+
+    #viewerPortfolio {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      background-color: #808080;
+      border: 1px solid #444;
+      margin-bottom: 1.5rem;
+      border-radius: .5rem;
+      overflow: hidden;
+      box-shadow: 0 24px 40px rgba(0,0,0,0.8);
+    }
+    #viewerPortfolio canvas {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+    .model-list {
+      background-color: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 24px 40px rgba(0,0,0,0.8);
+      border-radius: .75rem;
+      padding: 1rem;
+    }
+
+    .model-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: .75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: .9rem;
+      color: var(--text-main);
+    }
+    .model-row:last-child {
+      border-bottom: 0;
+    }
+
+    .model-row-left {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      color: var(--text-main);
+    }
+    .model-name {
+      font-weight: 500;
+      color: var(--text-main);
+    }
+    .model-meta {
+      font-size: .8rem;
+      color: var(--text-dim);
+    }
+
+    .model-row-right {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-preview {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: var(--text-main);
+      border-radius: .5rem;
+      font-size: .8rem;
+      padding: .4rem .6rem;
+      cursor: pointer;
+    }
+    .btn-preview:hover {
+      background: rgba(255,255,255,0.07);
+    }
+  </style>
+</head>
+<body data-page="portfolio">
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a class="nav-left" href="index.html">
+        <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+        <div class="brand-name">Third Degree Burn</div>
+      </a>
+
+      <div class="nav-burger"><span></span><span></span><span></span></div>
+
+      <div class="nav-right">
+        <a class="nav-link" data-page="home" href="index.html">Home</a>
+        <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+        <a class="nav-link" data-page="upload" href="upload.html">3D Print Upload</a>
+        <a class="nav-link" data-page="convert" href="convert.html">Image → STL</a>
+        <a class="nav-link active" data-page="games" href="games.html">Games</a>
+        <a class="nav-link" data-page="connections" href="connections.html">Connections</a>
+        <!-- external nice pills -->
+        <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
+          Weather Viz
+        </a>
+        <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">
+          Space / Earth
+        </a>
+        <a class="nav-link" data-page="about" href="about.html">About</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="container">
+    <h1 class="intro-title" style="margin-bottom:.5rem;">Portfolio</h1>
+    <p class="intro-lead" style="margin-bottom:2rem;">
+      Models and functional parts. Click preview to load into the 3D viewer.
+    </p>
+
+    <!-- Color swatches -->
+    <div class="mb-3">
+      <label class="form-label" style="font-size:.9rem;color:var(--text-dim);display:block;margin-bottom:.5rem;">
+        Model Color
+      </label>
+      <div id="colorSwatches" class="d-flex flex-wrap" style="gap:.5rem;display:flex;">
+        <span class="color-swatch" data-color="#000000" style="background:#000000;"></span>
+        <span class="color-swatch" data-color="#FFFFFF" style="background:#ffffff;border:1px solid #ccc;"></span>
+        <span class="color-swatch" data-color="#00FF00" style="background:#00ff00;"></span>
+        <span class="color-swatch" data-color="#0000FF" style="background:#0000ff;"></span>
+        <span class="color-swatch" data-color="#FF0000" style="background:#ff0000;"></span>
+        <span class="color-swatch" data-color="#FFC0CB" style="background:#ffc0cb;"></span>
+        <span class="color-swatch" data-color="#800080" style="background:#800080;"></span>
+        <span class="color-swatch" data-color="#FFA500" style="background:#ffa500;"></span>
+        <span class="color-swatch" data-color="#FFFF00" style="background:#ffff00;"></span>
+      </div>
+    </div>
+
+    <!-- 3D viewer -->
+    <div id="viewerPortfolio"></div>
+
+    <!-- Model list -->
+    <section class="model-list" style="margin-top:2rem;">
+      <div class="section-heading" style="margin-top:0;">
+        <div class="dot"></div>
+        <div>Library</div>
+      </div>
+
+      <div id="modelListContainer"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Third Degree Burn / Ayaan Asif</div>
+    <div>
+      <a href="about.html">Contact</a> ·
+      <a href="about.html#resume">Resume</a>
+    </div>
+  </footer>
+
+  <!-- Three.js + controls + STLLoader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+
+  <!-- load manifest BEFORE our inline script -->
+  <script src="assets/js/prints-manifest.js"></script>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // We'll pull STL list from window.PORTFOLIO_PRINTS
+    let scene, camera, renderer, controls;
+    let currentMesh = null;
+    let selectedColor = "#FFFFFF"; // default
+
+    function initViewer() {
+      const container = document.getElementById("viewerPortfolio");
+      if (!container) return;
+      if (renderer) return;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(
+        75,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setClearColor(0x808080, 1);
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      Object.assign(renderer.domElement.style, {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        display: "block"
+      });
+      container.appendChild(renderer.domElement);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enablePan = true;
+      controls.enableZoom = true;
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      keyLight.position.set(-1, 1, 1);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      fillLight.position.set(1, 1, 0.5);
+      scene.add(fillLight);
+
+      const backLight = new THREE.DirectionalLight(0xffffff, 0.3);
+      backLight.position.set(0, -1, 1);
+      scene.add(backLight);
+
+      animate();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (controls) controls.update();
+      if (renderer && scene && camera) {
+        renderer.render(scene, camera);
+      }
+    }
+
+    function disposePreviousMesh() {
+      if (!currentMesh) return;
+      scene.remove(currentMesh);
+      if (currentMesh.geometry) currentMesh.geometry.dispose();
+      if (currentMesh.material) {
+        if (Array.isArray(currentMesh.material)) {
+          currentMesh.material.forEach(m => m.dispose());
+        } else {
+          currentMesh.material.dispose();
+        }
+      }
+      currentMesh = null;
+    }
+
+    async function loadModelFromURL(url) {
+      try {
+        const res = await fetch(url);
+        const buf = await res.arrayBuffer();
+        const loader = new THREE.STLLoader();
+        const geometry = loader.parse(buf);
+
+        disposePreviousMesh();
+
+        const material = new THREE.MeshPhongMaterial({
+          color: new THREE.Color(selectedColor),
+        });
+
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.name = "portfolioModel";
+        scene.add(mesh);
+        currentMesh = mesh;
+
+        geometry.computeBoundingBox();
+        const bbox = geometry.boundingBox;
+        const center = bbox.getCenter(new THREE.Vector3());
+        mesh.position.sub(center);
+
+        const size = bbox.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        camera.position.set(0, 0, maxDim * 2);
+        camera.up.set(0, 1, 0);
+        camera.lookAt(0, 0, 0);
+        controls.update();
+      } catch (err) {
+        console.error("Error loading STL:", err);
+      }
+    }
+
+    function buildModelList(fileArray) {
+      const container = document.getElementById("modelListContainer");
+      container.innerHTML = "";
+
+      fileArray.forEach((filePath) => {
+        const nameOnly = filePath.split("/").pop();
+        const baseName = nameOnly.replace(/\.stl$/i, "");
+
+        const row = document.createElement("div");
+        row.className = "model-row";
+
+        const left = document.createElement("div");
+        left.className = "model-row-left";
+
+        const titleEl = document.createElement("div");
+        titleEl.className = "model-name";
+        titleEl.textContent = baseName;
+
+        const metaEl = document.createElement("div");
+        metaEl.className = "model-meta";
+        metaEl.textContent = nameOnly;
+
+        left.appendChild(titleEl);
+        left.appendChild(metaEl);
+
+        const right = document.createElement("div");
+        right.className = "model-row-right";
+
+        const btnPreview = document.createElement("button");
+        btnPreview.className = "btn-preview";
+        btnPreview.textContent = "Preview";
+        btnPreview.addEventListener("click", () => {
+          loadModelFromURL(filePath);
+        });
+
+        right.appendChild(btnPreview);
+
+        row.appendChild(left);
+        row.appendChild(right);
+        container.appendChild(row);
+      });
+    }
+
+    function setupColorSwatches() {
+      const swatches = document.querySelectorAll("#colorSwatches .color-swatch");
+      swatches.forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+          swatches.forEach(s => s.classList.remove("selected"));
+          swatch.classList.add("selected");
+          selectedColor = swatch.getAttribute("data-color");
+
+          if (currentMesh) {
+            currentMesh.material.color.set(selectedColor);
+          }
+        });
+      });
+
+      const whiteSwatch = document.querySelector('#colorSwatches .color-swatch[data-color="#FFFFFF"]');
+      if (whiteSwatch) {
+        whiteSwatch.classList.add("selected");
+        selectedColor = "#FFFFFF";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      initViewer();
+      setupColorSwatches();
+
+      const listFromManifest = (window.PORTFOLIO_PRINTS || []);
+      buildModelList(listFromManifest);
+
+      // auto load first model if any
+      if (listFromManifest.length > 0) {
+        loadModelFromURL(listFromManifest[0]);
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      const container = document.getElementById("viewerPortfolio");
+      if (!container || !renderer || !camera) return;
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Custom 3D Print — Ayaan Asif / SpaceFox</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-page="custom">
+
+  <!-- Navbar -->
+  <div class="navbar-wrap">
+  <nav class="navbar">
+    <a class="nav-left" href="index.html">
+      <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+      <div class="brand-name">Third Degree Burn</div>
+    </a>
+
+    <div class="nav-burger"><span></span><span></span><span></span></div>
+
+    <div class="nav-right">
+      <a class="nav-link" data-page="home" href="index.html">Home</a>
+      <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+      <a class="nav-link" data-page="upload" href="upload.html">3D Print Upload</a>
+      <a class="nav-link" data-page="convert" href="convert.html">Image → STL</a>
+      <a class="nav-link" data-page="games" href="games.html">Games</a>
+      <a class="nav-link" data-page="connections" href="connections.html">Connections</a>
+      <!-- external nice pills -->
+      <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
+        Weather Viz
+      </a>
+      <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">
+        Space / Earth
+      </a>
+      <a class="nav-link" data-page="about" href="about.html">About</a>
+    </div>
+  </nav>
+</div>
+
+
+  <main class="container">
+    <h1 class="intro-title" style="font-size:2rem;">Custom 3D Print Request</h1>
+    <p class="intro-lead" style="max-width:50rem;">
+      Upload your STL, preview it in 3D, pick a color, and describe what you need.
+      This doesn’t auto-order (no backend here) — it creates a summary you can send me so I can quote / print it.
+    </p>
+
+    <!-- COLOR PICKER -->
+    <section style="margin-top:2rem;">
+      <h2 class="section-heading">
+        <span class="dot"></span>
+        <span>Step 1. Pick a color (for reference)</span>
+      </h2>
+
+      <div id="colorSwatches"
+           style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;">
+
+        <span class="cp-swatch" data-color="#000000" style="background:#000000;"></span>
+        <span class="cp-swatch" data-color="#FFFFFF" style="background:#ffffff;border:1px solid #999;"></span>
+        <span class="cp-swatch" data-color="#606060" style="background:#606060;"></span>
+        <span class="cp-swatch" data-color="#FF0000" style="background:#ff0000;"></span>
+        <span class="cp-swatch" data-color="#00FF00" style="background:#00ff00;"></span>
+        <span class="cp-swatch" data-color="#0000FF" style="background:#0000ff;"></span>
+        <span class="cp-swatch" data-color="#FFC0CB" style="background:#ffc0cb;"></span>
+        <span class="cp-swatch" data-color="#FFA500" style="background:#ffa500;"></span>
+        <span class="cp-swatch" data-color="#FFFF00" style="background:#ffff00;"></span>
+        <span class="cp-swatch" data-color="#800080" style="background:#800080;"></span>
+      </div>
+
+      <style>
+        /* swatch styling (copied from old SpaceFox and adapted to theme) */
+        .cp-swatch {
+          width:32px;
+          height:32px;
+          cursor:pointer;
+          border:2px solid transparent;
+          border-radius:6px;
+          box-shadow:0 10px 20px rgba(0,0,0,0.7);
+        }
+        .cp-swatch.selected {
+          border-color:#ffffff;
+        }
+      </style>
+
+      <div style="font-size:.8rem;color:var(--text-dim);line-height:1.4rem;">
+        I’ll try to match this color or suggest the closest filament I have (PLA/PETG/ABS).
+      </div>
+    </section>
+
+    <!-- VIEWER -->
+    <section style="margin-top:2rem;">
+      <h2 class="section-heading">
+        <span class="dot"></span>
+        <span>Step 2. Preview your STL</span>
+      </h2>
+
+      <p style="font-size:.9rem;color:var(--text-main);margin-bottom:1rem;">
+        This viewer runs in your browser only. Your file never uploads to a server.
+      </p>
+
+      <div style="margin-bottom:1rem;">
+        <label style="display:block;font-size:.85rem;color:var(--text-main);margin-bottom:.5rem;">
+          Choose STL file:
+        </label>
+        <input id="stlInput" type="file" accept=".stl"
+               style="
+                 background:rgba(255,255,255,0.05);
+                 border:1px solid rgba(255,255,255,0.2);
+                 border-radius:var(--radius-sm);
+                 color:var(--text-main);
+                 padding:.6rem;
+                 font-size:.9rem;
+                 width:100%;
+                 max-width:400px;
+               " />
+        <div id="loadMsg"
+             style="color:var(--accent);font-size:.8rem;margin-top:.5rem;min-height:1rem;">
+        </div>
+      </div>
+
+      <style>
+        /* 3D viewer container */
+        #viewer3d {
+          position:relative;
+          width:100%;
+          height:400px;
+          background-color:#808080;
+          border:1px solid rgba(255,255,255,0.1);
+          border-radius:var(--radius-sm);
+          box-shadow:0 24px 40px rgba(0,0,0,0.8);
+          overflow:hidden;
+        }
+        #viewer3d canvas {
+          position:absolute !important;
+          top:0 !important;
+          left:0 !important;
+          width:100% !important;
+          height:100% !important;
+          display:block;
+        }
+      </style>
+
+      <div id="viewer3d"></div>
+    </section>
+
+    <!-- DETAILS FORM -->
+    <section style="margin-top:2rem;">
+      <h2 class="section-heading">
+        <span class="dot"></span>
+        <span>Step 3. Describe what you need</span>
+      </h2>
+
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:2rem;">
+        <!-- left side: inputs -->
+        <div>
+          <label style="display:block;color:var(--text-main);font-size:.85rem;margin-bottom:.4rem;">
+            Part / Project Name
+          </label>
+          <input id="partName" type="text"
+            placeholder="e.g. Spikeball Rim Replacement v2"
+            style="
+              background:rgba(255,255,255,0.05);
+              border:1px solid rgba(255,255,255,0.2);
+              border-radius:var(--radius-sm);
+              color:var(--text-main);
+              padding:.6rem;
+              font-size:.9rem;
+              width:100%;
+              margin-bottom:1rem;
+            "
+          />
+
+          <label style="display:block;color:var(--text-main);font-size:.85rem;margin-bottom:.4rem;">
+            Notes / Specs / Tolerances
+          </label>
+          <textarea id="partDesc" rows="5"
+            placeholder="Tell me what this part does, how strong it needs to be, how precise it needs to fit, etc."
+            style="
+              background:rgba(255,255,255,0.05);
+              border:1px solid rgba(255,255,255,0.2);
+              border-radius:var(--radius-sm);
+              color:var(--text-main);
+              padding:.6rem;
+              font-size:.9rem;
+              width:100%;
+              resize:vertical;
+            "
+          ></textarea>
+
+          <div style="font-size:.8rem;color:var(--text-dim);line-height:1.4rem;margin-top:.5rem;">
+            Tips: “Needs to handle impact”, “heat tolerant”, “must press-fit around 28mm tube”, etc.
+          </div>
+
+          <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;">
+            <button class="btn btn-accent" id="generateEmailBtn" type="button">
+              Generate Email Template
+            </button>
+            <a class="btn btn-ghost"
+               id="emailLink"
+               href="#"
+               style="pointer-events:none;opacity:.4;">
+              Open Email Draft
+            </a>
+          </div>
+        </div>
+
+        <!-- right side: summary block -->
+        <div class="resume-block" style="background:var(--panel-bg);">
+          <p style="color:var(--text-dim);font-size:.8rem;margin:0 0 .5rem;">
+            Summary you can send me:
+          </p>
+          <textarea id="summaryBox" rows="12" readonly
+            style="
+              width:100%;
+              background:rgba(0,0,0,0.4);
+              border:1px solid rgba(255,255,255,0.15);
+              border-radius:var(--radius-sm);
+              color:var(--text-main);
+              padding:.6rem;
+              font-size:.8rem;
+              line-height:1.4rem;
+              resize:vertical;
+              box-shadow:0 16px 32px rgba(0,0,0,0.9) inset;
+            "
+          ></textarea>
+          <div style="font-size:.7rem;color:var(--text-dim);margin-top:.5rem;line-height:1.4rem;">
+            You can copy/paste this, or click “Open Email Draft”.  
+            Attach the STL file to your email manually.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FOOTNOTE -->
+    <section style="margin-top:2rem;">
+      <div class="contact-block" style="font-size:.8rem;">
+        <div class="contact-line">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="mailto:ayaan.asif@mail.utoronto.ca">ayaan.asif@mail.utoronto.ca</a>
+          </div>
+        </div>
+        <div class="contact-line">
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+1&nbsp;437&nbsp;971&nbsp;0137</div>
+        </div>
+        <p style="color:var(--text-dim); font-size:.8rem; margin-top:1rem;">
+          I’ll get back with availability, material choice, and cost.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Ayaan Asif / SpaceFox</div>
+    <div>
+      <a href="about.html">Contact</a> ·
+      <a href="about.html#resume">Resume</a>
+    </div>
+  </footer>
+
+  <!-- Three.js, OrbitControls, STLLoader from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // --- State ---
+    let scene, camera, renderer, controls;
+    let currentMesh = null;
+    let selectedColor = "#606060"; // default mid gray
+
+    // --- 3D Viewer Setup ---
+    function initViewer() {
+      const container = document.getElementById("viewer3d");
+      if (!container || renderer) return; // don't double-init
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(
+        75,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setClearColor(0x808080, 1); // gray bg, matches old SpaceFox
+      renderer.setSize(container.clientWidth, container.clientHeight);
+
+      Object.assign(renderer.domElement.style, {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        display: "block",
+      });
+
+      container.appendChild(renderer.domElement);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      keyLight.position.set(-1, 1, 1);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      fillLight.position.set(1, 1, 0.5);
+      scene.add(fillLight);
+
+      const backLight = new THREE.DirectionalLight(0xffffff, 0.3);
+      backLight.position.set(0, -1, 1);
+      scene.add(backLight);
+
+      animate();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (controls) controls.update();
+      if (renderer && scene && camera) {
+        renderer.render(scene, camera);
+      }
+    }
+
+    function disposeMesh() {
+      if (!currentMesh) return;
+      scene.remove(currentMesh);
+      if (currentMesh.geometry) currentMesh.geometry.dispose();
+      if (currentMesh.material) {
+        if (Array.isArray(currentMesh.material)) {
+          currentMesh.material.forEach(m => m.dispose());
+        } else {
+          currentMesh.material.dispose();
+        }
+      }
+      currentMesh = null;
+    }
+
+    function loadSTLFromArrayBuffer(arrayBuffer) {
+      disposeMesh();
+
+      const loader = new THREE.STLLoader();
+      const geometry = loader.parse(arrayBuffer);
+
+      const material = new THREE.MeshPhongMaterial({
+        color: new THREE.Color(selectedColor),
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.name = "uploadedModel";
+      scene.add(mesh);
+      currentMesh = mesh;
+
+      geometry.computeBoundingBox();
+      const bbox = geometry.boundingBox;
+      const center = bbox.getCenter(new THREE.Vector3());
+      mesh.position.sub(center);
+
+      const size = bbox.getSize(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+
+      camera.position.set(0, 0, maxDim * 2);
+      camera.up.set(0, 1, 0);
+      camera.lookAt(0, 0, 0);
+      controls.update();
+    }
+
+    // --- Email summary builder ---
+    function buildSummary() {
+      const partName = document.getElementById("partName").value.trim();
+      const partDesc = document.getElementById("partDesc").value.trim();
+
+      const summaryLines = [
+        "Custom 3D Print Request",
+        "------------------------",
+        `Part Name: ${partName || "(not specified)"}`,
+        "",
+        `Color Preference: ${selectedColor}`,
+        "",
+        "Description / Requirements:",
+        partDesc || "(no description provided)",
+        "",
+        "Attached STL file: (attach the file you chose)",
+        "",
+        "Notes:",
+        "- Please confirm printability, strength, and cost.",
+        "- Let me know if any changes are needed."
+      ];
+
+      return summaryLines.join("\n");
+    }
+
+    function updateSummaryBox() {
+      const box = document.getElementById("summaryBox");
+      box.value = buildSummary();
+    }
+
+    function updateEmailLink() {
+      const link = document.getElementById("emailLink");
+      const partName = document.getElementById("partName").value.trim() || "3D Print Request";
+      const body = encodeURIComponent(buildSummary());
+      const subject = encodeURIComponent("[SpaceFox Print Request] " + partName);
+
+      link.href = `mailto:ayaan.asif@mail.utoronto.ca?subject=${subject}&body=${body}`;
+      link.style.pointerEvents = "auto";
+      link.style.opacity = "1";
+    }
+
+    // --- Event wiring ---
+    window.addEventListener("DOMContentLoaded", () => {
+      // init viewer
+      initViewer();
+
+      // handle STL file preview
+      const stlInput = document.getElementById("stlInput");
+      const loadMsg = document.getElementById("loadMsg");
+      stlInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!file.name.toLowerCase().endsWith(".stl")) {
+          loadMsg.textContent = "Please choose a .stl file.";
+          return;
+        }
+        const reader = new FileReader();
+        reader.addEventListener("load", (evt) => {
+          try {
+            loadSTLFromArrayBuffer(evt.target.result);
+            loadMsg.textContent = "Model loaded in viewer ✔︎";
+          } catch (err) {
+            console.error(err);
+            loadMsg.textContent = "Couldn't load STL. Is it valid?";
+          }
+        });
+        reader.readAsArrayBuffer(file);
+      });
+
+      // handle color swatches
+      document.querySelectorAll(".cp-swatch").forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+          document.querySelectorAll(".cp-swatch").forEach(s => s.classList.remove("selected"));
+          swatch.classList.add("selected");
+          selectedColor = swatch.getAttribute("data-color");
+
+          // live-update mesh color
+          if (currentMesh) {
+            currentMesh.material.color.set(selectedColor);
+          }
+
+          updateSummaryBox();
+        });
+      });
+
+      // default select the grey swatch (#606060)
+      const defaultSwatch = document.querySelector('.cp-swatch[data-color="#606060"]')
+                            || document.querySelector('.cp-swatch');
+      if (defaultSwatch) {
+        defaultSwatch.classList.add("selected");
+        selectedColor = defaultSwatch.getAttribute("data-color");
+      }
+
+      // summary generation
+      const genBtn = document.getElementById("generateEmailBtn");
+      genBtn.addEventListener("click", () => {
+        updateSummaryBox();
+        updateEmailLink();
+      });
+
+      // live-update summary as user types (nice touch)
+      document.getElementById("partName").addEventListener("input", updateSummaryBox);
+      document.getElementById("partDesc").addEventListener("input", updateSummaryBox);
+
+      // initial summary
+      updateSummaryBox();
+    });
+
+    // responsive resize for viewer
+    window.addEventListener("resize", () => {
+      const container = document.getElementById("viewer3d");
+      if (!container || !renderer || !camera) return;
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+
+    // footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
