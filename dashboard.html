@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Global Tracker — Third Degree Burn</title>
+    <meta name="description" content="Global tracking dashboard for wildlife migration and resource deposits." />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/dashboard.css" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+
+<body data-page="dashboard">
+
+    <!-- NAVBAR -->
+    <div class="navbar-wrap">
+        <nav class="navbar">
+            <a class="nav-left" href="index.html">
+                <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+                <div class="brand-name">Third Degree Burn</div>
+            </a>
+
+            <div class="nav-burger"><span></span><span></span><span></span></div>
+
+            <div class="nav-right">
+                <a class="nav-link" data-page="home" href="index.html">Home</a>
+                <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+                <a class="nav-link" data-page="projects" href="projects.html">Projects</a>
+                <a class="nav-link active" data-page="dashboard" href="dashboard.html">Global Tracker</a>
+                <a class="nav-link" data-page="astrophysics" href="astrophysics.html">Astrophysics</a>
+                <a class="nav-link" data-page="skills" href="skills.html">Skills</a>
+                <a class="nav-link" data-page="upload" href="upload.html">3D Upload</a>
+                <a class="nav-link" data-page="games" href="games.html">Games</a>
+                <a class="nav-link" data-page="about" href="about.html">About</a>
+
+                <!-- Social Links -->
+                <div class="nav-social">
+                    <a href="https://linkedin.com/in/ayaanasif" target="_blank" rel="noreferrer" aria-label="LinkedIn"
+                        class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main class="dashboard-container">
+        <div class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <h1>Global Tracker</h1>
+                <p>Real-time monitoring system</p>
+            </div>
+
+            <div class="control-group">
+                <h3>Active Layers</h3>
+                <label class="toggle-row">
+                    <input type="checkbox" id="layer-wildlife" checked>
+                    <span class="toggle-label">
+                        <span class="icon">🐾</span> Wildlife Migration
+                    </span>
+                </label>
+                <span class="stat-label">Tracked Entities</span>
+                <span class="stat-value" id="stat-count">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Active Regions</span>
+                <span class="stat-value">12</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Data Stream</span>
+                <span class="stat-value status-good">Online</span>
+            </div>
+        </div>
+
+        <div class="feed-panel">
+            <h3>Recent Pings</h3>
+            <ul id="activity-feed" class="activity-feed">
+                <!-- Populated by JS -->
+            </ul>
+        </div>
+        </div>
+
+        <div class="map-wrapper">
+            <div id="map"></div>
+            <div class="map-overlay">
+                <div class="overlay-card">
+                    <h4>System Status</h4>
+                    <p>Global monitoring active. Updating coordinates...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+/* assets/css/dashboard.css */
+
+/* Layout */
+.dashboard-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    /* Subtract navbar height */
+    overflow: hidden;
+    position: relative;
+}
+
+.dashboard-sidebar {
+    width: 320px;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    padding: 1.5rem;
+    gap: 2rem;
+    overflow-y: auto;
+}
+
+.map-wrapper {
+    flex: 1;
+    position: relative;
+    background: #000;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Sidebar Components */
+.sidebar-header h1 {
+    font-family: var(--ff-display);
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar-header p {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.control-group h3,
+.stats-panel h3,
+.feed-panel h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dimmer);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+/* Toggles */
+.toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s;
+}
+
+.toggle-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.toggle-label {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-label .icon {
+    font-size: 1.1rem;
+}
+
+/* Stats */
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.stat-label {
+    color: var(--text-dim);
+}
+
+.stat-value {
+    font-family: var(--ff-display);
+    font-weight: 600;
+}
+
+.status-good {
+    color: #4ee6b5;
+    text-shadow: 0 0 10px rgba(78, 230, 181, 0.4);
+}
+
+/* Activity Feed */
+.activity-feed {
+    list-style: none;
+    font-size: 0.8rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.feed-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    animation: fadeIn 0.3s ease;
+}
+
+.feed-time {
+    color: var(--text-dimmer);
+    font-size: 0.7rem;
+    min-width: 40px;
+}
+
+.feed-text {
+    color: var(--text-main);
+}
+
+/* Map Overlay */
+.map-overlay {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 500;
+    /* Above Leaflet controls */
+    pointer-events: none;
+}
+
+.overlay-card {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    max-width: 250px;
+    pointer-events: auto;
+}
+
+.overlay-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: var(--accent);
+}
+
+.overlay-card p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+}
+
+/* Leaflet Customization */
+.leaflet-container {
+    background: #0a0a0a !important;
+    font-family: var(--ff) !important;
+}
+
+.leaflet-popup-content-wrapper {
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+}
+
+.leaflet-popup-tip {
+    background: var(--accent);
+}
+
+.leaflet-popup-content {
+    margin: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.leaflet-control-zoom a {
+    background: rgba(20, 20, 20, 0.9) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: var(--accent) !important;
+    color: #000 !important;
+}
+
+/* Custom Marker Animations */
+.storm-marker {
+    animation: spin 8s linear infinite;
+}
+
+.volcano-marker {
+    animation: pulse-red 2s infinite;
+}
+
+.iss-marker {
+    box-shadow: 0 0 20px rgba(100, 200, 255, 0.8) !important;
+    border: 2px solid #fff !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .dashboard-sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .map-wrapper {
+        height: 60vh;
+    }
+}
