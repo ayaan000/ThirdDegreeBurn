@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -30,7 +31,8 @@
         <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
           Weather Viz
         </a>
-        <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">
+        <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank"
+          rel="noreferrer">
           Space / Earth
         </a>
         <a class="nav-link" data-page="about" href="about.html">About</a>
@@ -78,18 +80,12 @@
       </div>
 
       <aside class="about-right-card" id="resume">
-        <h2>Get in touch</h2>
-        <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:.5rem;">
-          Send me photos/specs of the part or a short brief for the game/system and I’ll tell you if I can do it quickly.
+        <h2>Resume</h2>
+        <p style="font-size:.85rem;margin-bottom:.5rem;">
+          <strong>Download:</strong> <a class="resume-download-btn" href="assets/Ayaan_Asif_Resume.pdf"
+            download>Download PDF</a>
         </p>
-        <p style="font-size:.85rem;">
-          <strong>Email:</strong> <span style="color:var(--accent);">ayaan.asif@mail.utoronto.ca</span><br />
-        </p>
-        <div style="margin-top:1rem;">
-          <a class="resume-download-btn" href="assets/Ayaan_Asif_Resume.pdf" download>
-            Download Resume
-          </a>
-        </div>
+        <iframe class="resume-embed" src="assets/Ayaan_Asif_Resume.pdf" title="Ayaan Asif Resume"></iframe>
       </aside>
     </section>
 
@@ -141,7 +137,7 @@
   <script src="assets/js/main.js"></script>
   <script>
     // copy email
-    (function() {
+    (function () {
       const emailTextEl = document.getElementById("emailText");
       const copyBtn = document.getElementById("copyEmailBtn");
       copyBtn.addEventListener("click", () => {
@@ -156,4 +152,5 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
+
 </html>
