@@ -1,0 +1,388 @@
+/* Astrophysics Page Styles */
+
+.astro-container {
+  max-width: 1400px;
+}
+
+.astro-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 1rem;
+}
+
+.astro-hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 0%, #a8ceff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.astro-lead {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+
+.astro-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 140, 0, 0.1);
+  border: 1px solid rgba(255, 140, 0, 0.3);
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.astro-badge span:nth-child(2) {
+  color: var(--text-dim);
+  font-size: 1.2rem;
+}
+
+/* Demo Sections */
+.demo-section {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+}
+
+.demo-header {
+  margin-bottom: 1.5rem;
+}
+
+.demo-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.demo-title-row h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.tech-badge {
+  background: rgba(100, 150, 255, 0.15);
+  border: 1px solid rgba(100, 150, 255, 0.3);
+  color: #a8ceff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 0.35rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.demo-desc {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 900px;
+}
+
+/* Controls */
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.demo-controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.demo-controls input[type="range"] {
+  width: 120px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.demo-controls input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.demo-controls select {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.demo-controls select:focus {
+  outline: 1px solid var(--accent);
+}
+
+.ctrl-btn {
+  background: rgba(255, 140, 0, 0.15);
+  border: 1px solid rgba(255, 140, 0, 0.4);
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ctrl-btn:hover {
+  background: rgba(255, 140, 0, 0.25);
+  border-color: var(--accent);
+}
+
+.supernova-controls {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.control-group {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* 3D Viewers */
+.viewer-3d {
+  width: 100%;
+  height: 600px;
+  background: radial-gradient(circle at 30% 30%, #0a0a1a 0%, #000000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(0, 0, 50, 0.4);
+}
+
+.viewer-3d canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Plot Canvas */
+.plot-canvas {
+  width: 100%;
+  height: 500px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* Planet Info Panel */
+.planet-info-panel {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.6rem;
+  padding: 1rem;
+  min-height: 80px;
+  font-size: 0.85rem;
+}
+
+.info-placeholder {
+  color: var(--text-dim);
+  text-align: center;
+  font-style: italic;
+}
+
+.planet-detail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.planet-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.planet-detail-label {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+.planet-detail-value {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Demo Info */
+.demo-info {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid var(--accent);
+  border-radius: 0.5rem;
+}
+
+.demo-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--accent);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.demo-info p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.demo-info ul {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.5rem;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.demo-info li {
+  margin-bottom: 0.35rem;
+}
+
+.demo-info strong {
+  color: #fff;
+}
+
+/* Resources Section */
+.resources-section {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+.resources-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.resource-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.resource-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(255, 140, 0, 0.2);
+}
+
+.resource-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.resource-card p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Social Icons in Navbar */
+.nav-social {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 0.4rem;
+  color: var(--text-main);
+  transition: all 0.2s;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.social-icon:hover {
+  background: rgba(255, 140, 0, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.social-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .viewer-3d,
+  .plot-canvas {
+    height: 400px;
+  }
+
+  .demo-section {
+    padding: 1.5rem;
+  }
+
+  .demo-title-row h2 {
+    font-size: 1.3rem;
+  }
+
+  .control-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .demo-controls label {
+    width: 100%;
+  }
+
+  .demo-controls input[type="range"] {
+    flex: 1;
+  }
+
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Astrophysics Portfolio — Ayaan Asif</title>
+    <meta name="description"
+        content="Interactive astrophysics simulations including 3D Solar System, Exoplanet Explorer, and Supernova Light Curves by Ayaan Asif" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/astrophysics.css" />
+</head>
+
+<body data-page="astrophysics">
+    <!-- NAVBAR -->
+    <div class="navbar-wrap">
+        <nav class="navbar">
+            <a class="nav-left" href="index.html">
+                <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+                <div class="brand-name">Third Degree Burn</div>
+            </a>
+            <div class="nav-burger"><span></span><span></span><span></span></div>
+            <div class="nav-right">
+                <a class="nav-link" data-page="home" href="index.html">Home</a>
+                <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+                <a class="nav-link" data-page="projects" href="projects.html">Projects</a>
+                <a class="nav-link active" data-page="astrophysics" href="astrophysics.html">Astrophysics</a>
+                <a class="nav-link" data-page="skills" href="skills.html">Skills</a>
+                <a class="nav-link" data-page="upload" href="upload.html">3D Upload</a>
+                <a class="nav-link" data-page="games" href="games.html">Games</a>
+                <a class="nav-link" data-page="about" href="about.html">About</a>
+
+                <!-- Social Links -->
+                <div class="nav-social">
+                    <a href="https://github.com/ayaanasif" target="_blank" rel="noreferrer" aria-label="GitHub"
+                        class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/ayaanasif" target="_blank" rel="noreferrer" aria-label="LinkedIn"
+                        class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main class="container astro-container">
+        <header class="astro-hero">
+            <h1>Astrophysics Portfolio</h1>
+            <p class="astro-lead">
+                Interactive simulations showcasing computational astrophysics, orbital mechanics,
+                and data visualization. Built with Three.js, WebGL, and vanilla JavaScript.
+            </p>
+            <div class="astro-badge">
+                <span>CS Specialist</span>
+                <span>+</span>
+                <span>Astrophysics Minor @ UofT</span>
+            </div>
+        </header>
+
+        <!-- DEMO 1: Solar System -->
+        <section class="demo-section">
+            <div class="demo-header">
+                <div class="demo-title-row">
+                    <h2>🪐 Interactive Solar System</h2>
+                    <span class="tech-badge">Three.js</span>
+                    <span class="tech-badge">Orbital Mechanics</span>
+                    <span class="tech-badge">WebGL</span>
+                </div>
+                <p class="demo-desc">
+                    Real-time 3D simulation of our solar system with accurate orbital periods and relative sizes.
+                    Demonstrates gravitational physics, Kepler's laws, and 3D graphics programming.
+                </p>
+            </div>
+
+            <div class="demo-controls">
+                <label>
+                    <span>Time Speed:</span>
+                    <input type="range" id="timeSpeed" min="0" max="100" value="20" />
+                    <span id="speedDisplay">20x</span>
+                </label>
+                <label>
+                    <input type="checkbox" id="showOrbits" checked />
+                    <span>Show Orbits</span>
+                </label>
+                <label>
+                    <input type="checkbox" id="showLabels" checked />
+                    <span>Show Labels</span>
+                </label>
+                <button id="resetCamera" class="ctrl-btn">Reset Camera</button>
+            </div>
+
+            <div id="solarSystemViewer" class="viewer-3d"></div>
+
+            <div class="demo-info">
+                <h4>Features:</h4>
+                <ul>
+                    <li><strong>Realistic Orbits:</strong> Planetary periods scaled to real values</li>
+                    <li><strong>Interactive Camera:</strong> Drag to rotate, scroll to zoom, right-click to pan</li>
+                    <li><strong>Time Control:</strong> Speed up or pause orbital motion</li>
+                    <li><strong>Visual Accuracy:</strong> Relative sizes and distances (logarithmic scale for
+                        visibility)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DEMO 2: Exoplanet Explorer -->
+        <section class="demo-section">
+            <div class="demo-header">
+                <div class="demo-title-row">
+                    <h2>🌍 Exoplanet Data Explorer</h2>
+                    <span class="tech-badge">Data Viz</span>
+                    <span class="tech-badge">Canvas API</span>
+                    <span class="tech-badge">NASA Data</span>
+                </div>
+                <p class="demo-desc">
+                    Interactive visualization of confirmed exoplanets. Explore relationships between
+                    planet mass, radius, orbital period, and discovery method using real astronomical data.
+                </p>
+            </div>
+
+            <div class="demo-controls">
+                <label>
+                    <span>Discovery Method:</span>
+                    <select id="filterMethod">
+                        <option value="all">All Methods</option>
+                        <option value="transit">Transit</option>
+                        <option value="radial">Radial Velocity</option>
+                        <option value="imaging">Direct Imaging</option>
+                        <option value="microlensing">Microlensing</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Color By:</span>
+                    <select id="colorBy">
+                        <option value="method">Discovery Method</option>
+                        <option value="year">Discovery Year</option>
+                        <option value="distance">Distance from Earth</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="exoplanetPlot" class="plot-canvas"></div>
+
+            <div class="planet-info-panel" id="planetInfo">
+                <div class="info-placeholder">Hover over a planet to see details</div>
+            </div>
+
+            <div class="demo-info">
+                <h4>Dataset:</h4>
+                <p>Sample of <strong id="planetCount">0</strong> confirmed exoplanets from NASA Exoplanet Archive.
+                    Data includes mass, radius, orbital period, host star properties, and discovery information.</p>
+            </div>
+        </section>
+
+        <!-- DEMO 3: Supernova Light Curve -->
+        <section class="demo-section">
+            <div class="demo-header">
+                <div class="demo-title-row">
+                    <h2>💥 Supernova Light Curve Simulator</h2>
+                    <span class="tech-badge">Physics Sim</span>
+                    <span class="tech-badge">Numerical Methods</span>
+                    <span class="tech-badge">Photometry</span>
+                </div>
+                <p class="demo-desc">
+                    Simulate and compare light curves for different supernova types. Adjust physical parameters
+                    to see how explosion energy, ejecta mass, and opacity affect observable brightness over time.
+                </p>
+            </div>
+
+            <div class="demo-controls supernova-controls">
+                <div class="control-group">
+                    <label>
+                        <span>Supernova Type:</span>
+                        <select id="supernovaType">
+                            <option value="Ia">Type Ia (Thermonuclear)</option>
+                            <option value="IIP">Type II-P (Core Collapse)</option>
+                            <option value="IIL">Type II-L (Linear Decline)</option>
+                            <option value="Ib">Type Ib (Stripped Envelope)</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Peak Luminosity (10⁴³ erg/s):</span>
+                        <input type="range" id="peakLuminosity" min="1" max="20" value="10" step="0.5" />
+                        <span id="peakDisplay">10</span>
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label>
+                        <span>Decay Rate (mag/100d):</span>
+                        <input type="range" id="decayRate" min="0.5" max="5" value="2" step="0.1" />
+                        <span id="decayDisplay">2.0</span>
+                    </label>
+                    <label>
+                        <span>Rise Time (days):</span>
+                        <input type="range" id="riseTime" min="5" max="40" value="15" step="1" />
+                        <span id="riseDisplay">15</span>
+                    </label>
+                </div>
+                <button id="addCurve" class="ctrl-btn">Add to Comparison</button>
+                <button id="clearCurves" class="ctrl-btn">Clear All</button>
+            </div>
+
+            <div id="lightCurvePlot" class="plot-canvas"></div>
+
+            <div class="demo-info">
+                <h4>Physics Model:</h4>
+                <p>
+                    Light curves calculated using simplified analytical models based on exponential rise/decay
+                    and bolometric corrections. Type Ia supernovae serve as "standard candles" for cosmology
+                    due to their consistent peak brightness (~M<sub>V</sub> = -19.3).
+                </p>
+            </div>
+        </section>
+
+        <!-- Learning Resources -->
+        <section class="resources-section">
+            <h2>Learning & Exploration</h2>
+            <div class="resource-grid">
+                <a href="https://eyes.nasa.gov/apps/solar-system/" target="_blank" class="resource-card">
+                    <h3>NASA Solar System</h3>
+                    <p>Explore real spacecraft missions and planetary data</p>
+                </a>
+                <a href="https://exoplanets.nasa.gov/" target="_blank" class="resource-card">
+                    <h3>NASA Exoplanet Archive</h3>
+                    <p>Official database of confirmed exoplanets</p>
+                </a>
+                <a href="https://www.astropy.org/" target="_blank" class="resource-card">
+                    <h3>AstroPy</h3>
+                    <p>Python tools for astronomical data analysis</p>
+                </a>
+                <a href="https://jwst.nasa.gov/" target="_blank" class="resource-card">
+                    <h3>James Webb Telescope</h3>
+                    <p>Latest deep space imagery and science</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div>© <span id="year"></span> Third Degree Burn / Ayaan Asif</div>
+        <div>
+            <a href="about.html">Contact</a> ·
+            <a href="about.html#resume">Resume</a>
+        </div>
+    </footer>
+
+    <!-- Three.js for Solar System -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/solar-system.js"></script>
+    <script src="assets/js/exoplanet-viz.js"></script>
+    <script src="assets/js/supernova-sim.js"></script>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

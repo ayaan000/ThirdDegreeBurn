@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Projects — Ayaan Asif</title>
+    <meta name="description"
+        content="Technical projects portfolio including 3D visualization, game development, and AI model evaluation by Ayaan Asif" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/projects.css" />
+</head>
+
+<body data-page="projects">
+    <!-- NAVBAR -->
+    <div class="navbar-wrap">
+        <nav class="navbar">
+            <a class="nav-left" href="index.html">
+                <img class="logo" src="assets/img/spacefox.webp" alt="Third Degree Burn logo" />
+                <div class="brand-name">Third Degree Burn</div>
+            </a>
+            <div class="nav-burger"><span></span><span></span><span></span></div>
+            <div class="nav-right">
+                <a class="nav-link" data-page="home" href="index.html">Home</a>
+                <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+                <a class="nav-link active" data-page="projects" href="projects.html">Projects</a>
+                <a class="nav-link" data-page="astrophysics" href="astrophysics.html">Astrophysics</a>
+                <a class="nav-link" data-page="skills" href="skills.html">Skills</a>
+                <a class="nav-link" data-page="upload" href="upload.html">3D Upload</a>
+                <a class="nav-link" data-page="games" href="games.html">Games</a>
+                <a class="nav-link" data-page="about" href="about.html">About</a>
+
+                <!-- Social Links -->
+                <div class="nav-social">
+                    <a href="https://github.com/ayaanasif" target="_blank" rel="noreferrer" aria-label="GitHub"
+                        class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/ayaanasif" target="_blank" rel="noreferrer" aria-label="LinkedIn"
+                        class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main class="container projects-container">
+        <header class="projects-hero">
+            <h1>Technical Projects</h1>
+            <p class="projects-lead">
+                A collection of software projects showcasing full-stack development, 3D graphics,
+                game systems, and AI evaluation. Each project demonstrates problem-solving,
+                technical implementation, and attention to user experience.
+            </p>
+        </header>
+
+        <!-- PROJECT 1: STL Heightmap Generator -->
+        <section class="project-card">
+            <div class="project-header">
+                <h2>Image-to-STL Heightmap Generator</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">Canvas API</span>
+                    <span class="tech-badge">Computational Geometry</span>
+                    <span class="tech-badge">3D Printing</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-description">
+                    <h3>Problem</h3>
+                    <p>
+                        Converting 2D images into 3D printable models typically requires expensive software
+                        or cloud services with privacy concerns. Users need a fast, client-side solution
+                        for creating heightmap-based 3D models from logos, artwork, or photographs.
+                    </p>
+
+                    <h3>Solution</h3>
+                    <p>
+                        Built a browser-based converter that transforms any image into an STL file with
+                        customizable parameters. The tool uses Canvas API for image processing, applies
+                        grayscale-to-height mapping with configurable curves, and generates ASCII STL
+                        format with proper face normals for 3D printing.
+                    </p>
+
+                    <h3>Technical Highlights</h3>
+                    <ul>
+                        <li><strong>100% Client-Side:</strong> No server required, all processing in-browser</li>
+                        <li><strong>Parametric Control:</strong> Base dimensions, extrude height, thickness, quality
+                            settings</li>
+                        <li><strong>Height Curves:</strong> Linear, sqrt, and quadratic mapping for material
+                            optimization</li>
+                        <li><strong>STL Generation:</strong> Algorithmic mesh creation with proper topology</li>
+                        <li><strong>Real-time Preview:</strong> Instant visual feedback before generation</li>
+                    </ul>
+
+                    <h3>Impact</h3>
+                    <p>
+                        Enables rapid prototyping of embossed parts without external tools. Useful for
+                        creating custom nameplates, signage, decorative panels, and relief sculptures.
+                    </p>
+
+                    <div class="project-links">
+                        <a href="convert.html" class="btn-demo">View Live Demo →</a>
+                        <a href="#" class="btn-github">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-visual">
+                    <img src="https://via.placeholder.com/600x400/1a1a1a/ff8c00?text=STL+Converter+Demo"
+                        alt="STL Converter" />
+                    <p class="visual-caption">Client-side image processing and STL generation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT 2: 3D Portfolio System -->
+        <section class="project-card">
+            <div class="project-header">
+                <h2>Interactive 3D Model Portfolio</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">Three.js</span>
+                    <span class="tech-badge">WebGL</span>
+                    <span class="tech-badge">STLLoader</span>
+                    <span class="tech-badge">Responsive Design</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-description">
+                    <h3>Problem</h3>
+                    <p>
+                        Showcasing 3D printable models on the web requires users to download files
+                        and open them in specialized software. This creates friction and limits
+                        engagement with a portfolio.
+                    </p>
+
+                    <h3>Solution</h3>
+                    <p>
+                        Developed a full-featured 3D viewer using Three.js that loads and displays
+                        STL files directly in the browser. Features orbit controls, color customization,
+                        dynamic lighting, and automatic camera positioning based on model bounds.
+                    </p>
+
+                    <h3>Technical Highlights</h3>
+                    <ul>
+                        <li><strong>STL Parsing:</strong> Binary and ASCII STL format support</li>
+                        <li><strong>Auto-Centering:</strong> Bounding box calculation for optimal view</li>
+                        <li><strong>Material System:</strong> Real-time color changes with Phong shading</li>
+                        <li><strong>Multi-Source Loading:</strong> File upload and library selection</li>
+                        <li><strong>Performance:</strong> Efficient geometry disposal and memory management</li>
+                    </ul>
+
+                    <h3>Impact</h3>
+                    <p>
+                        Provides instant 3D visualization without downloads. Visitors can explore
+                        models, check dimensions, and assess print feasibility directly in browser.
+                    </p>
+
+                    <div class="project-links">
+                        <a href="portfolio.html" class="btn-demo">View Live Demo →</a>
+                        <a href="#" class="btn-github">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-visual">
+                    <img src="https://via.placeholder.com/600x400/1a1a1a/4A90E2?text=3D+Viewer+Demo" alt="3D Viewer" />
+                    <p class="visual-caption">WebGL-based STL viewer with orbit controls</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT 3: Unity Game Development -->
+        <section class="project-card">
+            <div class="project-header">
+                <h2>NyanKnives & Raptor Run</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">Unity</span>
+                    <span class="tech-badge">C#</span>
+                    <span class="tech-badge">Game Physics</span>
+                    <span class="tech-badge">Animation</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-description">
+                    <h3>Problem</h3>
+                    <p>
+                        Creating polished, responsive game mechanics requires deep understanding
+                        of physics systems, player feedback loops, and iterative design.
+                    </p>
+
+                    <h3>Solution</h3>
+                    <p>
+                        Developed two complete Unity games: a high-mobility melee combat prototype
+                        (NyanKnives) and an endless runner with procedural generation (Raptor Run).
+                        Implemented player controllers, enemy AI, difficulty scaling, and visual effects.
+                    </p>
+
+                    <h3>Technical Highlights</h3>
+                    <ul>
+                        <li><strong>Custom Physics:</strong> Dash mechanics with velocity curves and input buffering
+                        </li>
+                        <li><strong>State Machines:</strong> Enemy behavior and combat systems</li>
+                        <li><strong>Procedural Generation:</strong> Obstacle spawning with difficulty ramps</li>
+                        <li><strong>Animation Systems:</strong> Sprite animation and particle effects</li>
+                        <li><strong>Polish:</strong> Screen shake, hit pause, audio feedback</li>
+                    </ul>
+
+                    <h3>Impact</h3>
+                    <p>
+                        Completed contract work for Level 9 studio. Delivered fully playable builds
+                        with tuned game feel and replayability.
+                    </p>
+
+                    <div class="project-links">
+                        <a href="games.html" class="btn-demo">View Gameplay →</a>
+                        <a href="assets/games/NyanKnives_Windows.zip" class="btn-download" download>
+                            Download Build
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-visual">
+                    <img src="https://via.placeholder.com/600x400/1a1a1a/E27B58?text=Unity+Games" alt="Unity Games" />
+                    <p class="visual-caption">High-mobility combat and endless runner mechanics</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT 4: AI Model Evaluation -->
+        <section class="project-card">
+            <div class="project-header">
+                <h2>LLM Evaluation & Quality Assurance</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">AI/ML</span>
+                    <span class="tech-badge">Model Auditing</span>
+                    <span class="tech-badge">Rubric Design</span>
+                    <span class="tech-badge">Data Quality</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-description">
+                    <h3>Problem</h3>
+                    <p>
+                        Large language models require high-quality training data and rigorous
+                        evaluation to ensure correctness, safety, and alignment with human values.
+                        Poor evaluation leads to deployed models with subtle but critical flaws.
+                    </p>
+
+                    <h3>Solution</h3>
+                    <p>
+                        As an AI evaluator at Data Annotation Tech, I assess model outputs across
+                        code generation, reasoning tasks, and instruction-following scenarios.
+                        Created specialized rubrics for edge cases and wrote detailed feedback
+                        to improve model behavior.
+                    </p>
+
+                    <h3>Technical Approach</h3>
+                    <ul>
+                        <li><strong>Multi-Dimensional Evaluation:</strong> Correctness, safety, coherence, edge handling
+                        </li>
+                        <li><strong>Rubric Engineering:</strong> Designed scoring criteria for novel task types</li>
+                        <li><strong>Adversarial Testing:</strong> Identified failure modes through targeted prompts</li>
+                        <li><strong>Systematic Documentation:</strong> Detailed annotation for model iteration</li>
+                        <li><strong>Quality Control:</strong> Ensured consistency across large datasets</li>
+                    </ul>
+
+                    <h3>Impact</h3>
+                    <p>
+                        Ongoing contract since Oct 2023. Contributed to training datasets for
+                        state-of-the-art LLMs. Developed expertise in AI capabilities and limitations.
+                    </p>
+
+                    <div class="project-links">
+                        <a href="about.html#resume" class="btn-demo">View Experience →</a>
+                    </div>
+                </div>
+
+                <div class="project-visual">
+                    <img src="https://via.placeholder.com/600x400/1a1a1a/50C878?text=AI+Evaluation"
+                        alt="AI Evaluation" />
+                    <p class="visual-caption">Model evaluation and quality assurance workflow</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Projects Section -->
+        <section class="more-projects">
+            <h2>Additional Projects</h2>
+            <div class="mini-projects-grid">
+                <div class="mini-project-card">
+                    <h3>🪐 Solar System Simulator</h3>
+                    <p>3D orbital mechanics with realistic planetary data</p>
+                    <a href="astrophysics.html">View →</a>
+                </div>
+                <div class="mini-project-card">
+                    <h3>🌍 Exoplanet Visualizer</h3>
+                    <p>Interactive data exploration with NASA dataset</p>
+                    <a href="astrophysics.html">View →</a>
+                </div>
+                <div class="mini-project-card">
+                    <h3>💥 Supernova Light Curves</h3>
+                    <p>Physics-based photometry simulation</p>
+                    <a href="astrophysics.html">View →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div>© <span id="year"></span> Third Degree Burn / Ayaan Asif</div>
+        <div>
+            <a href="about.html">Contact</a> ·
+            <a href="about.html#resume">Resume</a>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
