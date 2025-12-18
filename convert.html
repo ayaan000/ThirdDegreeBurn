@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -12,56 +13,65 @@
     body[data-page="convert"] main.container {
       gap: 1.75rem;
     }
+
     .convert-hero {
       display: flex;
       justify-content: space-between;
       gap: 1.25rem;
       align-items: flex-start;
     }
+
     .convert-hint-box {
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .1);
       border-radius: .75rem;
       padding: .75rem .9rem;
       font-size: .75rem;
       max-width: 18rem;
       color: var(--text-dim);
     }
+
     .convert-shell {
       display: grid;
       grid-template-columns: 1.1fr .9fr;
       gap: 1.5rem;
       align-items: flex-start;
     }
+
     @media (max-width: 960px) {
       .convert-shell {
         grid-template-columns: 1fr;
       }
+
       .convert-hero {
         flex-direction: column;
       }
     }
+
     .label {
       font-size: .8rem;
       margin-bottom: .35rem;
       display: block;
-      color: rgba(255,255,255,.7);
+      color: rgba(255, 255, 255, .7);
     }
+
     .input-field {
       width: 100%;
-      background: rgba(0,0,0,.25);
-      border: 1px solid rgba(255,255,255,.07);
+      background: rgba(0, 0, 0, .25);
+      border: 1px solid rgba(255, 255, 255, .07);
       border-radius: .5rem;
       padding: .4rem .55rem;
       color: #fff;
       font-size: .8rem;
     }
+
     .two-cols {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: .75rem;
       margin-top: .75rem;
     }
+
     .btn-primary {
       background: var(--accent);
       border: 0;
@@ -73,13 +83,15 @@
       cursor: pointer;
       transition: .1s ease;
     }
+
     .btn-primary:disabled {
       opacity: .4;
       cursor: not-allowed;
     }
+
     .btn-secondary {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .12);
       color: #fff;
       border-radius: .6rem;
       padding: .5rem .9rem;
@@ -89,19 +101,22 @@
       gap: .35rem;
       font-size: .75rem;
     }
+
     .convert-msg {
       font-size: .7rem;
-      color: rgba(255,255,255,.5);
+      color: rgba(255, 255, 255, .5);
       margin-top: .35rem;
     }
+
     .error-msg {
       font-size: .7rem;
       color: #ff6d6d;
       margin-top: .25rem;
     }
+
     .img-preview-box {
-      background: rgba(0,0,0,.25);
-      border: 1px solid rgba(255,255,255,.03);
+      background: rgba(0, 0, 0, .25);
+      border: 1px solid rgba(255, 255, 255, .03);
       border-radius: .75rem;
       min-height: 240px;
       display: flex;
@@ -110,20 +125,24 @@
       overflow: hidden;
       position: relative;
     }
+
     .img-preview-box img {
       max-width: 100%;
       max-height: 100%;
       display: none;
     }
+
     .empty-text {
       font-size: .75rem;
-      color: rgba(255,255,255,.35);
+      color: rgba(255, 255, 255, .35);
     }
+
     .preview-note {
       font-size: .7rem;
-      color: rgba(255,255,255,.35);
+      color: rgba(255, 255, 255, .35);
       margin-top: .35rem;
     }
+
     /* advanced block */
     .advanced-toggle {
       margin-top: 1.25rem;
@@ -132,17 +151,19 @@
       gap: .35rem;
       cursor: pointer;
       font-size: .75rem;
-      color: rgba(255,255,255,.6);
+      color: rgba(255, 255, 255, .6);
     }
+
     .advanced-panel {
       margin-top: .75rem;
-      border: 1px solid rgba(255,255,255,.05);
+      border: 1px solid rgba(255, 255, 255, .05);
       border-radius: .75rem;
-      background: rgba(0,0,0,.2);
+      background: rgba(0, 0, 0, .2);
       padding: .75rem .75rem .25rem;
       display: none;
       gap: .75rem;
     }
+
     .advanced-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -150,6 +171,7 @@
     }
   </style>
 </head>
+
 <body data-page="convert">
 
   <!-- NAVBAR -->
@@ -161,19 +183,34 @@
       </a>
       <div class="nav-burger"><span></span><span></span><span></span></div>
       <div class="nav-right">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="portfolio.html">Portfolio</a>
-        <a class="nav-link" href="upload.html">3D Print Upload</a>
-        <a class="nav-link active" href="convert.html">Image → STL</a>
-        <a class="nav-link" href="games.html">Games</a>
-        <a class="nav-link" href="connections.html">Connections</a>
-        <a class="nav-link nav-link-pill" href="https://earth.nullschool.net/" target="_blank" rel="noreferrer">
-          Weather Viz
-        </a>
-        <a class="nav-link nav-link-pill" href="https://www.esa.int/Applications/Observing_the_Earth" target="_blank" rel="noreferrer">
-          Space / Earth
-        </a>
-        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" data-page="home" href="index.html">Home</a>
+        <a class="nav-link" data-page="portfolio" href="portfolio.html">Portfolio</a>
+        <a class="nav-link" data-page="projects" href="projects.html">Projects</a>
+        <a class="nav-link" data-page="dashboard" href="dashboard.html">Global Tracker</a>
+        <a class="nav-link" data-page="astrophysics" href="astrophysics.html">Astrophysics</a>
+        <a class="nav-link" href="https://ayaan000.github.io/Simulator/" target="_blank" rel="noreferrer">Simulator</a>
+        <a class="nav-link" data-page="skills" href="skills.html">Skills</a>
+        <a class="nav-link" data-page="upload" href="upload.html">3D Upload</a>
+        <a class="nav-link" data-page="games" href="games.html">Games</a>
+        <a class="nav-link" data-page="about" href="about.html">About</a>
+
+        <!-- Social Links -->
+        <div class="nav-social">
+          <a href="https://github.com/ayaanasif" target="_blank" rel="noreferrer" aria-label="GitHub"
+            class="social-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/ayaanasif" target="_blank" rel="noreferrer" aria-label="LinkedIn"
+            class="social-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+          </a>
+        </div>
       </div>
     </nav>
   </div>
@@ -189,8 +226,8 @@
         </p>
       </div>
       <div class="convert-hint-box">
-        <strong>Best results:</strong><br/>
-        use monochrome / logo / high contrast images.<br/>
+        <strong>Best results:</strong><br />
+        use monochrome / logo / high contrast images.<br />
         Bigger base → more triangles.
       </div>
     </header>
@@ -420,7 +457,7 @@
         const row = [];
         for (let x = 0; x < res; x++) {
           const idx = (y * res + x) * 4;
-          let r = imgData[idx], g = imgData[idx+1], b = imgData[idx+2];
+          let r = imgData[idx], g = imgData[idx + 1], b = imgData[idx + 2];
           let v = (r + g + b) / 3 / 255; // 0..1
           if (invertHeight.checked) v = 1 - v;
           // clamp low
@@ -476,10 +513,10 @@
       // top (maybe beveled)
       const bevelInset = bevel ? Math.min(bw, bh) * 0.02 : 0;
       const topPts = [
-        [0+bevelInset, 0+bevelInset, z1],
-        [bw-bevelInset, 0+bevelInset, z1],
-        [bw-bevelInset, bh-bevelInset, z1],
-        [0+bevelInset, bh-bevelInset, z1],
+        [0 + bevelInset, 0 + bevelInset, z1],
+        [bw - bevelInset, 0 + bevelInset, z1],
+        [bw - bevelInset, bh - bevelInset, z1],
+        [0 + bevelInset, bh - bevelInset, z1],
       ];
       const bottomPts = [
         [0, 0, z0],
@@ -507,9 +544,9 @@
           const y1 = (y + 1) * stepY;
 
           const zA = z1 + grid[y][x] * extrudeHeight;
-          const zB = z1 + grid[y][x+1] * extrudeHeight;
-          const zC = z1 + grid[y+1][x+1] * extrudeHeight;
-          const zD = z1 + grid[y+1][x] * extrudeHeight;
+          const zB = z1 + grid[y][x + 1] * extrudeHeight;
+          const zC = z1 + grid[y + 1][x + 1] * extrudeHeight;
+          const zD = z1 + grid[y + 1][x] * extrudeHeight;
 
           // two triangles: A-B-C and A-C-D
           const A = [x0, y0, zA];
@@ -536,15 +573,16 @@
         return t1 + t2;
       }
       function normal(p1, p2, p3) {
-        const u = [p2[0]-p1[0], p2[1]-p1[1], p2[2]-p1[2]];
-        const v = [p3[0]-p1[0], p3[1]-p1[1], p3[2]-p1[2]];
-        const nx = u[1]*v[2] - u[2]*v[1];
-        const ny = u[2]*v[0] - u[0]*v[2];
-        const nz = u[0]*v[1] - u[1]*v[0];
-        const len = Math.sqrt(nx*nx + ny*ny + nz*nz) || 1;
-        return [ (nx/len).toFixed(6), (ny/len).toFixed(6), (nz/len).toFixed(6) ];
+        const u = [p2[0] - p1[0], p2[1] - p1[1], p2[2] - p1[2]];
+        const v = [p3[0] - p1[0], p3[1] - p1[1], p3[2] - p1[2]];
+        const nx = u[1] * v[2] - u[2] * v[1];
+        const ny = u[2] * v[0] - u[0] * v[2];
+        const nz = u[0] * v[1] - u[1] * v[0];
+        const len = Math.sqrt(nx * nx + ny * ny + nz * nz) || 1;
+        return [(nx / len).toFixed(6), (ny / len).toFixed(6), (nz / len).toFixed(6)];
       }
     }
   </script>
 </body>
+
 </html>
