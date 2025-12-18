@@ -18,16 +18,16 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
     }
 
-    #colorSwatches .color-swatch.selected {
-      border-color: #ffffff;
-    }
-
     /* Layout wrapper */
     .portfolio-layout {
       display: grid;
       grid-template-columns: 1fr 320px;
       gap: 1.5rem;
       align-items: start;
+    }
+
+    #colorSwatches .color-swatch.selected {
+      border-color: #ffffff;
     }
 
     #viewerPortfolio {
@@ -45,6 +45,23 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+    }
+
+    /* Active model row style */
+    .model-row {
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 6px;
+      padding: 0.5rem;
+    }
+
+    .model-row:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .model-row.active {
+      background: rgba(255, 140, 0, 0.15);
+      border-color: var(--accent);
     }
 
     @media (max-width: 900px) {
@@ -114,7 +131,7 @@
   <main class="container">
     <h1 class="intro-title" style="margin-bottom:.5rem;">Portfolio</h1>
     <p class="intro-lead" style="margin-bottom:2rem;">
-      Models and functional parts. Click preview to load into the 3D viewer.
+      Select a model from the list to preview it instantly.
     </p>
 
     <div class="portfolio-layout">
@@ -147,7 +164,6 @@
             <div class="dot"></div>
             <div>Library</div>
           </div>
-
           <div id="modelListContainer"></div>
         </section>
       </aside>
@@ -204,6 +220,8 @@
       container.appendChild(renderer.domElement);
 
       controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.autoRotate = true; // Auto-rotate for better feel
+      controls.autoRotateSpeed = 2.0;
       controls.enablePan = true;
       controls.enableZoom = true;
 
@@ -289,6 +307,15 @@
         const row = document.createElement("div");
         row.className = "model-row";
 
+        // Instant Click Update
+        row.addEventListener("click", () => {
+          // Highlight active
+          document.querySelectorAll('.model-row').forEach(r => r.classList.remove('active'));
+          row.classList.add('active');
+
+          loadModelFromURL(filePath);
+        });
+
         const left = document.createElement("div");
         left.className = "model-row-left";
 
@@ -305,15 +332,7 @@
 
         const right = document.createElement("div");
         right.className = "model-row-right";
-
-        const btnPreview = document.createElement("button");
-        btnPreview.className = "btn-preview";
-        btnPreview.textContent = "Preview";
-        btnPreview.addEventListener("click", () => {
-          loadModelFromURL(filePath);
-        });
-
-        right.appendChild(btnPreview);
+        /* Removed Preview Button */
 
         row.appendChild(left);
         row.appendChild(right);
@@ -349,9 +368,14 @@
       const listFromManifest = (window.PORTFOLIO_PRINTS || []);
       buildModelList(listFromManifest);
 
-      // auto load first model if any
+      // auto load first model if any and mark active
       if (listFromManifest.length > 0) {
         loadModelFromURL(listFromManifest[0]);
+        // Set first item as active after build (requires timeout or selection logic)
+        setTimeout(() => {
+          const firstRow = document.querySelector('.model-row');
+          if (firstRow) firstRow.classList.add('active');
+        }, 100);
       }
     });
 
