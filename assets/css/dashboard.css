@@ -360,10 +360,11 @@
 .directory-item {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 0.8rem;
+    padding: 0.7rem;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 0.8rem;
     transition: all 0.2s;
@@ -372,35 +373,68 @@
 .directory-item:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.1);
-    transform: translateX(4px);
+    transform: translateX(2px);
 }
 
-.dir-icon {
-    font-size: 1.2rem;
+.dir-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dir-icon-main {
+    font-size: 1.1rem;
 }
 
 .dir-info {
-    flex: 1;
+    min-width: 0;
 }
 
 .dir-name {
     font-weight: 500;
     color: var(--text-main);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .dir-sub {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-dim);
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
 }
 
-.dir-locate {
+.dir-cat-tag {
     color: var(--accent);
-    opacity: 0;
-    transition: opacity 0.2s;
+    background: rgba(255, 140, 0, 0.1);
+    padding: 0 0.3rem;
+    border-radius: 4px;
+    display: inline-block;
 }
 
-.directory-item:hover .dir-locate {
-    opacity: 1;
+.dir-btn-locate {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.directory-item:hover .dir-btn-locate {
+    background: var(--accent);
+    color: #000;
 }

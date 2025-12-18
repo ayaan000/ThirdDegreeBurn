@@ -301,6 +301,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Render Directory
     const dirListEl = document.getElementById('directory-list');
 
+    // Helper for category icons
+    const getCategoryIcon = (type) => {
+        const map = {
+            'Mammal': '🐾', 'Bird': '🪶', 'Marine': '💧', 'Reptile': '🦎',
+            'Mineral': '⛏️', 'Energy': '⚡', 'Metal': '🏗️',
+            'Volcano': '🌋', 'Storm': '🌪️', 'Tectonic': '📉',
+            'Space Station': '🛰️'
+        };
+        return map[type] || '📍';
+    };
+
     const renderDirectory = (filterText = '') => {
         dirListEl.innerHTML = '';
         const filter = filterText.toLowerCase();
@@ -321,24 +332,28 @@ document.addEventListener('DOMContentLoaded', () => {
             filtered.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'directory-item';
+                const catIcon = getCategoryIcon(item.type);
+
                 div.innerHTML = `
-                    <span class="dir-icon">${item.emoji}</span>
+                    <div class="dir-icon-wrapper">
+                        <span class="dir-icon-main">${item.emoji}</span>
+                    </div>
                     <div class="dir-info">
                         <span class="dir-name">${item.name}</span>
-                        <span class="dir-sub">${item.location || item.type}</span>
+                        <span class="dir-sub">
+                            <span class="dir-cat-tag">${catIcon} ${item.type}</span> 
+                            ${item.location ? `· ${item.location}` : ''}
+                        </span>
                     </div>
-                    <span class="dir-locate">📍</span>
+                    <button class="dir-btn-locate">LOCATE</button>
                 `;
 
-                div.addEventListener('click', () => {
-                    // Zoom to location
+                div.addEventListener('click', (e) => {
+                    // map actions
                     map.flyTo([item.lat, item.lng], 6, {
                         animate: true,
                         duration: 1.5
                     });
-
-                    // Open popup if marker exists active
-                    // (Simplification: just fly to point for now)
                 });
 
                 dirListEl.appendChild(div);
