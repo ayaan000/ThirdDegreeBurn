@@ -50,51 +50,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- DATASETS ---
 
-    // Wildlife
+    // --- DATASETS (REAL WORLD REGIONS) ---
+
+    // Wildlife: Accurate habitats
     const wildlifeData = [
-        { id: 'fox29', name: "Arctic Fox #29", type: "Mammal", emoji: "🦊", lat: 70, lng: -40, color: "#ff8c00", dLat: -0.05, dLng: 0.1 },
-        { id: 'whale01', name: "Blue Whale Pod", type: "Marine", emoji: "🐋", lat: -10, lng: -100, color: "#4ee6b5", dLat: 0.02, dLng: -0.08 },
-        { id: 'leo04', name: "Snow Leopard", type: "Mammal", emoji: "🐆", lat: 35, lng: 80, color: "#ff8c00", dLat: 0.01, dLng: 0.01 },
-        { id: 'bird88', name: "Wandering Albatross", type: "Bird", emoji: "🦅", lat: -45, lng: 20, color: "#d96bff", dLat: 0.1, dLng: 0.2 },
-        { id: 'turt07', name: "Sea Turtle", type: "Marine", emoji: "🐢", lat: 0, lng: 120, color: "#4ee6b5", dLat: 0.03, dLng: -0.03 },
-        { id: 'ele12', name: "Elephant Herd", type: "Mammal", emoji: "🐘", lat: -15, lng: 25, color: "#ff8c00", dLat: 0.005, dLng: 0.01 },
-        { id: 'wolf02', name: "Grey Wolf Pack", type: "Mammal", emoji: "🐺", lat: 55, lng: -110, color: "#ff8c00", dLat: -0.02, dLng: 0.02 },
-        { id: 'shark99', name: "Great White", type: "Marine", emoji: "🦈", lat: -34, lng: 18, color: "#ff4444", dLat: 0.05, dLng: -0.05 },
-        { id: 'eagle01', name: "Bald Eagle", type: "Bird", emoji: "🦅", lat: 50, lng: -125, color: "#d96bff", dLat: -0.05, dLng: 0.05 },
-        { id: 'bear03', name: "Polar Bear", type: "Mammal", emoji: "🐻‍❄️", lat: 78, lng: -15, color: "#ffffff", dLat: -0.01, dLng: -0.02 },
-        { id: 'orca01', name: "Orca Pod A", type: "Marine", emoji: "🐋", lat: 48, lng: -123, color: "#ffffff", dLat: 0.04, dLng: -0.02 },
-        { id: 'orca02', name: "Orca Pod B", type: "Marine", emoji: "🐋", lat: -60, lng: -60, color: "#ffffff", dLat: -0.03, dLng: 0.04 },
-        { id: 'dolph01', name: "Bottlenose Dolphins", type: "Marine", emoji: "🐬", lat: 25, lng: -80, color: "#4ee6b5", dLat: 0.06, dLng: 0.06 },
-        { id: 'dolph02', name: "Spinner Dolphins", type: "Marine", emoji: "🐬", lat: -15, lng: 150, color: "#4ee6b5", dLat: 0.05, dLng: -0.05 },
-        { id: 'shark02', name: "Hammerhead Shark", type: "Marine", emoji: "🦈", lat: 0, lng: -90, color: "#ff4444", dLat: 0.02, dLng: 0.08 },
-        { id: 'shark03', name: "Tiger Shark", type: "Marine", emoji: "🦈", lat: 20, lng: -155, color: "#ff4444", dLat: 0.04, dLng: -0.04 },
-        { id: 'hump01', name: "Humpback Whale", type: "Marine", emoji: "🐋", lat: 20, lng: -156, color: "#4ee6b5", dLat: 0.01, dLng: -0.01 },
-        { id: 'narwhal', name: "Narwhal", type: "Marine", emoji: "🦄", lat: 75, lng: -80, color: "#d96bff", dLat: -0.02, dLng: 0.01 },
+        // Arctic / Antarctic
+        { id: 'bear01', name: "Polar Bear", type: "Mammal", emoji: "🐻‍❄️", lat: 78.22, lng: 15.6, color: "#ffffff", dLat: -0.01, dLng: -0.02, location: "Svalbard, Norway" },
+        { id: 'peng01', name: "Emperor Penguin Colony", type: "Bird", emoji: "🐧", lat: -77.5, lng: 167.0, color: "#ffffff", dLat: 0.01, dLng: 0.01, location: "Ross Sea, Antarctica" },
+
+        // Africa
+        { id: 'lion01', name: "Lion Pride", type: "Mammal", emoji: "🦁", lat: -2.33, lng: 34.83, color: "#ff8c00", dLat: 0.01, dLng: 0.01, location: "Serengeti, Tanzania" },
+        { id: 'ele01', name: "African Elephant Herd", type: "Mammal", emoji: "🐘", lat: -19.0, lng: 23.0, color: "#ff8c00", dLat: 0.005, dLng: 0.01, location: "Okavango Delta, Botswana" },
+        { id: 'gori01', name: "Mountain Gorilla", type: "Mammal", emoji: "🦍", lat: -1.4, lng: 29.5, color: "#ff8c00", dLat: 0.002, dLng: 0.002, location: "Virunga Mts, Rwanda" },
+
+        // Americas
+        { id: 'jag01', name: "Jaguar", type: "Mammal", emoji: "🐆", lat: -3.46, lng: -62.21, color: "#ff8c00", dLat: 0.01, dLng: -0.01, location: "Amazon Rainforest, Brazil" },
+        { id: 'tort01', name: "Galápagos Tortoise", type: "Reptile", emoji: "🐢", lat: -0.7, lng: -90.5, color: "#4ee6b5", dLat: 0.001, dLng: 0.001, location: "Galápagos Islands" },
+        { id: 'bison01', name: "American Bison", type: "Mammal", emoji: "🐂", lat: 44.6, lng: -110.5, color: "#ff8c00", dLat: 0.02, dLng: 0.02, location: "Yellowstone, USA" },
+        { id: 'condor01', name: "Andean Condor", type: "Bird", emoji: "🦅", lat: -15.8, lng: -71.5, color: "#d96bff", dLat: 0.1, dLng: 0.1, location: "Colca Canyon, Peru" },
+
+        // Asia / Oceania
+        { id: 'panda01', name: "Giant Panda", type: "Mammal", emoji: "🐼", lat: 30.8, lng: 103.0, color: "#ffffff", dLat: 0.005, dLng: 0.005, location: "Sichuan, China" },
+        { id: 'tiger01', name: "Bengal Tiger", type: "Mammal", emoji: "🐅", lat: 21.8, lng: 88.8, color: "#ff8c00", dLat: 0.01, dLng: 0.01, location: "Sundarbans, India" },
+        { id: 'kang01', name: "Red Kangaroo Mob", type: "Mammal", emoji: "🦘", lat: -25.3, lng: 131.0, color: "#ff8c00", dLat: 0.03, dLng: 0.03, location: "Outback, Australia" },
+        { id: 'orang01', name: "Orangutan", type: "Mammal", emoji: "🦧", lat: -0.5, lng: 114.0, color: "#ff8c00", dLat: 0.01, dLng: 0.01, location: "Borneo, Indonesia" },
+
+        // Oceans
+        { id: 'whale01', name: "Blue Whale", type: "Marine", emoji: "🐋", lat: 34.0, lng: -120.0, color: "#4ee6b5", dLat: 0.02, dLng: -0.05, location: "California Coast" },
+        { id: 'shark01', name: "Great White Shark", type: "Marine", emoji: "🦈", lat: -34.5, lng: 19.5, color: "#ff4444", dLat: 0.05, dLng: -0.05, location: "South Africa Coast" },
+        { id: 'reef01', name: "Coral Reef Life", type: "Marine", emoji: "🐠", lat: -18.0, lng: 147.0, color: "#4ee6b5", dLat: 0, dLng: 0, location: "Great Barrier Reef" }
     ];
 
-    // Resources
+    // Resources: Major global deposits
     const resourceData = [
-        { name: "Lithium Deposit", type: "Mineral", emoji: "🔋", lat: -22, lng: -68, color: "#6366f1" },
-        { name: "Rare Earths", type: "Mineral", emoji: "💎", lat: 35, lng: 105, color: "#6366f1" },
-        { name: "Cobalt Reserve", type: "Mineral", emoji: "⚙️", lat: -5, lng: 25, color: "#6366f1" },
-        { name: "Gold Vein", type: "Metal", emoji: "⚱️", lat: 64, lng: -140, color: "#ffd700" },
-        { name: "Offshore Oil", type: "Energy", emoji: "🛢️", lat: 25, lng: 55, color: "#333333" },
-        { name: "Oil Field", type: "Energy", emoji: "🛢️", lat: 31, lng: -102, color: "#333333" },
-        { name: "Natural Gas", type: "Energy", emoji: "🔥", lat: 60, lng: 75, color: "#ff4444" },
-        { name: "Uranium Mine", type: "Energy", emoji: "☢️", lat: -12, lng: 132, color: "#4ee6b5" },
+        // Minerals
+        { name: "Lithium Triangle", type: "Mineral", emoji: "🔋", lat: -22.0, lng: -68.0, color: "#6366f1", location: "Chile/Bolivia/Argentina", desc: "Largest global lithium reserves" },
+        { name: "Cobalt Belt", type: "Mineral", emoji: "⚙️", lat: -11.0, lng: 26.5, color: "#6366f1", location: "DRC", desc: "Primary global cobalt source" },
+        { name: "Rare Earths", type: "Mineral", emoji: "💎", lat: 40.0, lng: 109.8, color: "#6366f1", location: "Bayan Obo, China", desc: "World's largest REE mine" },
+        { name: "Gold Strike", type: "Metal", emoji: "⚱️", lat: 40.8, lng: -116.0, color: "#ffd700", location: "Nevada, USA", desc: "Major gold mining hub" },
+        { name: "Iron Ore", type: "Metal", emoji: "🏗️", lat: -23.0, lng: 119.0, color: "#b0b0b0", location: "Pilbara, Australia", desc: "Massive iron formations" },
+
+        // Energy
+        { name: "Ghawar Field", type: "Energy", emoji: "🛢️", lat: 25.0, lng: 49.5, color: "#333333", location: "Saudi Arabia", desc: "World's largest oil field" },
+        { name: "Permian Basin", type: "Energy", emoji: "🛢️", lat: 31.5, lng: -102.5, color: "#333333", location: "Texas/NM, USA", desc: "Major oil & gas basin" },
+        { name: "Athabasca Sands", type: "Energy", emoji: "🛢️", lat: 57.0, lng: -111.5, color: "#333333", location: "Canada", desc: "Oil sands deposits" },
+        { name: "North Field", type: "Energy", emoji: "🔥", lat: 26.5, lng: 52.0, color: "#ff4444", location: "Qatar/Iran", desc: "Largest natural gas field" },
+        { name: "Cigar Lake", type: "Energy", emoji: "☢️", lat: 58.0, lng: -104.5, color: "#4ee6b5", location: "Saskatchewan, Canada", desc: "High-grade Uranium" },
     ];
 
-    // Natural Phenomena
+    // Phenomena: Active/Famous locations
     const phenomenaData = [
-        { name: "Hurricane 'Atlas'", type: "Storm", emoji: "🌪️", lat: 15, lng: -45, color: "#ffffff", dLat: 0.1, dLng: -0.2, class: "storm-marker" },
-        { name: "Typhoon 'Kira'", type: "Storm", emoji: "🌀", lat: 10, lng: 130, color: "#ffffff", dLat: 0.15, dLng: -0.1, class: "storm-marker" },
-        { name: "Mt. Etna", type: "Volcano", emoji: "🌋", lat: 37.7, lng: 15, color: "#ff4444", class: "volcano-marker" },
-        { name: "Kilauea", type: "Volcano", emoji: "🌋", lat: 19.4, lng: -155.3, color: "#ff4444", class: "volcano-marker" },
-        { name: "Sakurajima", type: "Volcano", emoji: "🌋", lat: 31.6, lng: 130.6, color: "#ff4444", class: "volcano-marker" },
+        { name: "Ring of Fire", type: "Tectonic", emoji: "🌋", lat: 0, lng: 160, color: "#ff4444", class: "volcano-marker", desc: "Active tectonic belt" }, // Symbolic center
+        { name: "Mt. Fuji", type: "Volcano", emoji: "🌋", lat: 35.36, lng: 138.72, color: "#ff4444", class: "volcano-marker" },
+        { name: "Mauna Loa", type: "Volcano", emoji: "🌋", lat: 19.47, lng: -155.6, color: "#ff4444", class: "volcano-marker" },
+        { name: "Eyjafjallajökull", type: "Volcano", emoji: "🌋", lat: 63.63, lng: -19.62, color: "#ff4444", class: "volcano-marker" },
+        { name: "Typhoon Track", type: "Storm", emoji: "🌀", lat: 15.0, lng: 135.0, color: "#ffffff", dLat: 0.1, dLng: -0.2, class: "storm-marker", desc: "Pacific storm system" },
+        { name: "Hurricane Alley", type: "Storm", emoji: "🌪️", lat: 15.0, lng: -40.0, color: "#ffffff", dLat: 0.1, dLng: -0.1, class: "storm-marker", desc: "Atlantic storm formation" },
     ];
 
-    // Space Station (Special)
-    const issData = { name: "ISS (Zarya)", type: "Space Station", emoji: "🛰️", lat: 0, lng: 0, color: "#4ee6b5", dLat: 0.5, dLng: 2.5 };
+    // Space Station (Approx Live Orbit)
+    const issData = { name: "ISS (Zarya)", type: "Space Station", emoji: "🛰️", lat: 0, lng: 0, color: "#4ee6b5", dLat: 0.5, dLng: 2.5, desc: "Low Earth Orbit Laboratory" };
 
     // --- INITIALIZATION ---
 
@@ -263,4 +278,86 @@ document.addEventListener('DOMContentLoaded', () => {
             map.removeLayer(satelliteLayer);
         }
     });
+
+    // --- DIRECTORY LOGIC ---
+
+    // 1. Tab Switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            // Add active
+            btn.classList.add('active');
+            const targetId = `tab-${btn.dataset.tab}`;
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+    // 2. Render Directory
+    const dirListEl = document.getElementById('directory-list');
+
+    const renderDirectory = (filterText = '') => {
+        dirListEl.innerHTML = '';
+        const filter = filterText.toLowerCase();
+
+        const createGroup = (title, items, typeStr) => {
+            const filtered = items.filter(item =>
+                item.name.toLowerCase().includes(filter) ||
+                (item.location && item.location.toLowerCase().includes(filter))
+            );
+
+            if (filtered.length === 0) return;
+
+            const titleEl = document.createElement('div');
+            titleEl.className = 'directory-group-title';
+            titleEl.textContent = title;
+            dirListEl.appendChild(titleEl);
+
+            filtered.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'directory-item';
+                div.innerHTML = `
+                    <span class="dir-icon">${item.emoji}</span>
+                    <div class="dir-info">
+                        <span class="dir-name">${item.name}</span>
+                        <span class="dir-sub">${item.location || item.type}</span>
+                    </div>
+                    <span class="dir-locate">📍</span>
+                `;
+
+                div.addEventListener('click', () => {
+                    // Zoom to location
+                    map.flyTo([item.lat, item.lng], 6, {
+                        animate: true,
+                        duration: 1.5
+                    });
+
+                    // Open popup if marker exists active
+                    // (Simplification: just fly to point for now)
+                });
+
+                dirListEl.appendChild(div);
+            });
+        };
+
+        createGroup('Wildlife', wildlifeData);
+        createGroup('Resources', resourceData);
+        createGroup('Phenomena', phenomenaData);
+        if (issData.name.toLowerCase().includes(filter)) {
+            createGroup('Satellites', [issData]);
+        }
+    };
+
+    renderDirectory();
+
+    // 3. Search
+    document.getElementById('dir-search').addEventListener('input', (e) => {
+        renderDirectory(e.target.value);
+    });
+
 });

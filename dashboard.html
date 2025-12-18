@@ -68,32 +68,66 @@
                 <p>Real-time monitoring system</p>
             </div>
 
-            <div class="control-group">
-                <h3>Active Layers</h3>
-                <label class="toggle-row">
-                    <input type="checkbox" id="layer-wildlife" checked>
-                    <span class="toggle-label">
-                        <span class="icon">🐾</span> Wildlife Migration
-                    </span>
-                </label>
-                <span class="stat-label">Tracked Entities</span>
-                <span class="stat-value" id="stat-count">0</span>
+            <!-- TABS -->
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="monitor">Monitor</button>
+                <button class="tab-btn" data-tab="directory">Directory</button>
             </div>
-            <div class="stat-item">
-                <span class="stat-label">Active Regions</span>
-                <span class="stat-value">12</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Data Stream</span>
-                <span class="stat-value status-good">Online</span>
-            </div>
-        </div>
 
-        <div class="feed-panel">
-            <h3>Recent Pings</h3>
-            <ul id="activity-feed" class="activity-feed">
-                <!-- Populated by JS -->
-            </ul>
+            <!-- MONITOR CONTENT -->
+            <div id="tab-monitor" class="tab-content active">
+                <div class="control-group">
+                    <h3>Active Layers</h3>
+                    <label class="toggle-row">
+                        <input type="checkbox" id="layer-wildlife" checked>
+                        <span class="toggle-label">
+                            <span class="icon">🐾</span> Wildlife Migration
+                        </span>
+                    </label>
+                    <label class="toggle-row">
+                        <input type="checkbox" id="layer-resources" checked>
+                        <span class="toggle-label">
+                            <span class="icon">💎</span> Resources
+                        </span>
+                    </label>
+                    <label class="toggle-row">
+                        <input type="checkbox" id="layer-phenomena" checked>
+                        <span class="toggle-label">
+                            <span class="icon">🌋</span> Phenomena
+                        </span>
+                    </label>
+                    <label class="toggle-row">
+                        <input type="checkbox" id="layer-space">
+                        <span class="toggle-label">
+                            <span class="icon">🛰️</span> Satellites
+                        </span>
+                    </label>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-label">Entities</span>
+                        <span class="stat-value" id="stat-count">0</span>
+                    </div>
+                </div>
+
+                <div class="feed-panel">
+                    <h3>Recent Pings</h3>
+                    <ul id="activity-feed" class="activity-feed">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- DIRECTORY CONTENT -->
+            <div id="tab-directory" class="tab-content">
+                <div class="directory-search">
+                    <input type="text" id="dir-search" placeholder="Search entities..." />
+                </div>
+                <div id="directory-list" class="directory-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
         </div>
         </div>
 

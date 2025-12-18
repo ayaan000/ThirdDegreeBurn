@@ -786,3 +786,79 @@ body[data-page="home"] .feature-link {
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+/* ===== Portfolio / Model List Global Styles ===== */
+.model-list {
+    background-color: var(--glass-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.8);
+    border-radius: .75rem;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.model-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: .9rem;
+    color: var(--text-main);
+    gap: 0.5rem;
+}
+
+.model-row:last-child {
+    border-bottom: 0;
+}
+
+.model-row-left {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    color: var(--text-main);
+}
+
+.model-name {
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.model-meta {
+    font-size: .8rem;
+    color: var(--text-dim);
+}
+
+.model-row-right {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+/* Orange Portfolio Buttons */
+.btn-preview {
+    background: var(--accent);
+    /* Orange */
+    border: 1px solid var(--accent);
+    color: #000;
+    /* Black text for contrast */
+    border-radius: .5rem;
+    font-size: .85rem;
+    padding: .4rem .8rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.btn-preview:hover {
+    background: var(--accent-bright);
+    border-color: var(--accent-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+}
+
+.btn-preview:active {
+    transform: translateY(0);
+}
