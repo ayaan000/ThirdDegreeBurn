@@ -300,45 +300,52 @@
       currentMesh = null;
     }
 
-    async function loadModelFromURL(url) {
+    function loadModelFromURL(url) {
+      // 1. Show overlay immediately
       const overlay = document.getElementById('loadingOverlay');
       if (overlay) overlay.classList.add('visible');
 
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("Network response was not ok");
+      // 2. Yield to browser to let it paint the spinner
+      setTimeout(async () => {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error("Network response was not ok");
 
-        const buf = await res.arrayBuffer();
-        const loader = new THREE.STLLoader();
-        const geometry = loader.parse(buf);
+          const buf = await res.arrayBuffer();
+          const loader = new THREE.STLLoader();
+          const geometry = loader.parse(buf);
 
-        disposePreviousMesh();
+          disposePreviousMesh();
 
-        const material = new THREE.MeshPhongMaterial({
-          color: new THREE.Color(selectedColor),
-        });
+          const material = new THREE.MeshPhongMaterial({
+            color: new THREE.Color(selectedColor),
+          });
 
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.name = "portfolioModel";
-        scene.add(mesh);
-        currentMesh = mesh;
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.name = "portfolioModel";
+          scene.add(mesh);
+          currentMesh = mesh;
 
-        geometry.computeBoundingBox();
-        const bbox = geometry.boundingBox;
-        const center = bbox.getCenter(new THREE.Vector3());
-        mesh.position.sub(center);
+          geometry.computeBoundingBox();
+          const bbox = geometry.boundingBox;
+          const center = bbox.getCenter(new THREE.Vector3());
+          mesh.position.sub(center);
 
-        const size = bbox.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        camera.position.set(0, 0, maxDim * 2);
-        camera.up.set(0, 1, 0);
-        camera.lookAt(0, 0, 0);
-        controls.update();
-      } catch (err) {
-        console.error("Error loading STL:", err);
-      } finally {
-        if (overlay) overlay.classList.remove('visible');
-      }
+          const size = bbox.getSize(new THREE.Vector3());
+          const maxDim = Math.max(size.x, size.y, size.z);
+          camera.position.set(0, 0, maxDim * 2);
+          camera.up.set(0, 1, 0);
+          camera.lookAt(0, 0, 0);
+          controls.update();
+
+        } catch (err) {
+          console.error("Error loading STL:", err);
+          // Optional: Show error message in overlay instead of hiding it
+        } finally {
+          // Hide overlay only after everything is done
+          if (overlay) overlay.classList.remove('visible');
+        }
+      }, 50); // Short delay to ensure paint
     }
 
     function buildModelList(fileArray) {
